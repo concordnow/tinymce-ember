@@ -1,9 +1,11 @@
 {
   "name": "tinymce-ember",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "TinyMCE Ember addon",
   "keywords": [
-    "ember-addon"
+    "ember-addon",
+    "tinymce",
+    "editor"
   ],
   "repository": "",
   "license": "MIT",
