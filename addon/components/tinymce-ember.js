@@ -1,11 +1,8 @@
 import Component from '@ember/component';
 import { guidFor } from '@ember/object/internals';
-import layout from '../templates/components/tinymce-ember';
 import { scheduleOnce } from '@ember/runloop';
 
 export default Component.extend({
-  layout,
-
   editor: null,
   editorContent: '',
   editorId: null,
@@ -19,6 +16,20 @@ export default Component.extend({
       .replaceAll(/[^a-z0-9]/gi, '-')
       .toLowerCase();
     this.set('editorId', EditorId);
+  },
+
+  didInsertElement() {
+    this._super(...arguments);
+
+    let type = this.config.inline ? ((typeof this.inlineType === 'string' && this.inlineType) || 'div') : 'textarea';
+    let block = document.createElement(type);
+
+    block.setAttribute('id', this.editorId);
+    if (type === 'textarea') {
+      block.setAttribute('name', this.editorName);
+    }
+
+    this.element.append(block);
 
     // Run editor initialization once page is rendered
     scheduleOnce('afterRender', this, this.initEditor);
