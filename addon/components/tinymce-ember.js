@@ -5,6 +5,8 @@ import { debounce, scheduleOnce } from '@ember/runloop';
 export default Component.extend({
   editor: null,
   editorContent: '',
+  editorCustomEvents: null,
+  editorEvents: 'change keyup setcontent',
   editorId: null,
   editorName: 'tinymce',
   editorTimeDebounce: 500,
@@ -16,7 +18,10 @@ export default Component.extend({
     const EditorId = `${this.editorName}-${guidFor(this)}`
       .replaceAll(/[^a-z0-9]/gi, '-')
       .toLowerCase();
-    this.set('editorId', EditorId);
+    this.setProperties({
+      editorCustomEvents: [],
+      editorId: EditorId
+    });
   },
 
   didInsertElement() {
@@ -42,6 +47,14 @@ export default Component.extend({
     const Editor = this.editor;
     if (Editor?.initialized) {
       Editor.setMode(this.disabled ? 'readonly' : 'design');
+
+      if (this.editorCustomEvents.length) {
+        this.unbindEditorCustomEvents(Editor);
+      }
+
+      if (this.customEvents.length) {
+        this.bindEditorCustomEvents(Editor);
+      }
     }
   },
 
@@ -50,16 +63,27 @@ export default Component.extend({
 
     const Editor = this.editor;
     if (Editor) {
-      Editor.off('change keyup setcontent', this.handleEditorChange.bind(this));
+      Editor.off(this.editorEvents, this.handleEditorChange.bind(this));
 
-      if (this.customEvents) {
-        this.customEvents.forEach(event => {
-          Editor.off(event.name, event.handler);
-        });
+      if (this.editorCustomEvents.length) {
+        this.unbindEditorCustomEvents(Editor);
       }
 
       Editor.remove();
     }
+  },
+
+  bindEditorCustomEvents(Editor) {
+    this.customEvents.forEach(event => {
+      this.editorCustomEvents.push(event);
+      Editor.on(event.name, event.handler);
+    });
+  },
+
+  unbindEditorCustomEvents(Editor) {
+    this.editorCustomEvents.forEach(event => {
+      Editor.off(event.name, event.handler);
+    });
   },
 
   debouncedEditorChange() {
@@ -81,13 +105,10 @@ export default Component.extend({
     const Editor = this.editor;
     if (Editor) {
       Editor.setContent(this.editorContent);
-
-      Editor.on('change keyup setcontent', this.handleEditorChange.bind(this));
+      Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
 
       if (this.customEvents) {
-        this.customEvents.forEach(event => {
-          Editor.on(event.name, event.handler);
-        });
+        this.bindEditorCustomEvents(Editor);
       }
     }
   },
