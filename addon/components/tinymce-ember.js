@@ -24,6 +24,15 @@ export default Component.extend({
     scheduleOnce('afterRender', this, this.initEditor);
   },
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+    const Editor = this.editor;
+    if (Editor?.initialized) {
+      Editor.setMode(this.disabled ? 'readonly' : 'design');
+    }
+  },
+
   willDestroyElement() {
     this._super(...arguments);
 
