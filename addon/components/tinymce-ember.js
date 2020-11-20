@@ -24,6 +24,15 @@ export default Component.extend({
     scheduleOnce('afterRender', this, this.initEditor);
   },
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+    const Editor = this.editor;
+    if (Editor?.initialized) {
+      Editor.setMode(this.disabled ? 'readonly' : 'design');
+    }
+  },
+
   willDestroyElement() {
     this._super(...arguments);
 
@@ -84,6 +93,8 @@ export default Component.extend({
         if (this.config.setup && typeof this.config.setup === 'function') {
           this.config.setup(editor);
         }
+
+        editor.setMode(this.disabled ? 'readonly' : 'design');
       }
     }
 
