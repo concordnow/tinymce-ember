@@ -1,12 +1,13 @@
 import Component from '@ember/component';
 import { guidFor } from '@ember/object/internals';
-import { scheduleOnce } from '@ember/runloop';
+import { debounce, scheduleOnce } from '@ember/runloop';
 
 export default Component.extend({
   editor: null,
   editorContent: '',
   editorId: null,
   editorName: 'tinymce',
+  editorTimeDebounce: 500,
 
   init() {
     this._super(...arguments);
@@ -61,15 +62,19 @@ export default Component.extend({
     }
   },
 
-  handleEditorChange() {
+  debouncedEditorChange() {
     const Editor = this.editor;
-    if (Editor) {
+    if (Editor?.isDirty()) {
       const NewContent = Editor.getContent({format: 'html'});
 
       if (this.editorContent !== NewContent) {
         this.set('editorContent', NewContent);
       }
     }
+  },
+
+  handleEditorChange() {
+    debounce(this, this.debouncedEditorChange, this.editorTimeDebounce);
   },
 
   handleEditorInit() {
