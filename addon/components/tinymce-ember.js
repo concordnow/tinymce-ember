@@ -82,10 +82,18 @@ export default Component.extend({
       throw new Error('TinyMCE hasn\'t been attached to the window hence not imported in your application.');
     }
 
+    let domElement = {
+      selector: `#${this.editorId}`,
+    };
+
+    if (this.target) {
+      domElement.target = this.target;
+      domElement.selector = undefined;
+    }
     // Extend default and custom configurations
     const Config = {
       ...this.config,
-      selector: `#${this.editorId}`,
+      ...domElement,
       setup: editor => {
         this.set('editor', editor);
         editor.on('init', this.handleEditorInit.bind(this));
