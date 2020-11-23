@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { guidFor } from '@ember/object/internals';
-import { debounce, scheduleOnce } from '@ember/runloop';
+import { scheduleOnce } from '@ember/runloop';
 
 export default Component.extend({
   editor: null,
@@ -12,6 +12,8 @@ export default Component.extend({
   editorName: 'tinymce',
   editorTimeDebounce: 500,
 
+  customEvents: null,
+
   init() {
     this._super(...arguments);
 
@@ -20,6 +22,7 @@ export default Component.extend({
       .replaceAll(/[^a-z0-9]/gi, '-')
       .toLowerCase();
     this.setProperties({
+      customEvents: this.customEvents ?? [],
       editorCustomEvents: [],
       editorId: EditorId
     });
@@ -57,9 +60,10 @@ export default Component.extend({
         this.bindEditorCustomEvents(Editor);
       }
 
+      this.set('editorCurrentContent', (this.editorCurrentContent ?? Editor.getContent({format: 'html'})));
+
       if (this.editorContent !== this.editorCurrentContent) {
         Editor.setContent(this.editorContent);
-        this.set('editorCurrentContent', this.editorContent);
       }
     }
   },
@@ -92,22 +96,19 @@ export default Component.extend({
     });
   },
 
-  debouncedEditorChange() {
+  handleEditorChange() {
     const Editor = this.editor;
     if (Editor?.isDirty()) {
       const NewContent = Editor.getContent({format: 'html'});
 
-      if (this.editorContent !== NewContent) {
-        this.setProperties({
-          editorContent: NewContent,
-          editorCurrentContent: NewContent
-        });
+      if (this.editorCurrentContent !== NewContent) {
+        this.set('editorCurrentContent', NewContent);
+
+        if (typeof this.onEditorContentChange === 'function') {
+          this.onEditorContentChange(NewContent ?? '', Editor);
+        }
       }
     }
-  },
-
-  handleEditorChange() {
-    debounce(this, this.debouncedEditorChange, this.editorTimeDebounce);
   },
 
   handleEditorInit() {
@@ -115,7 +116,10 @@ export default Component.extend({
     if (Editor) {
       Editor.setContent(this.editorContent);
       this.set('editorCurrentContent', this.editorContent);
-      Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
+
+      if (typeof this.onEditorContentChange === 'function') {
+        Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
+      }
 
       if (this.customEvents) {
         this.bindEditorCustomEvents(Editor);
