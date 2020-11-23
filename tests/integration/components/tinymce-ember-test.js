@@ -3,24 +3,27 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
+ /* eslint-disable no-unused-vars */
+import tinymce from 'tinymce/tinymce';
+
 module('Integration | Component | tinymce-ember', function(hooks) {
   setupRenderingTest(hooks);
 
   test('it renders', async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
-
     await render(hbs`<TinymceEmber />`);
 
     assert.equal(this.element.textContent.trim(), '');
+  });
 
-    // Template block usage:
+  test('it renders with content', async function(assert) {
+    this.set('editorContent', '');
+
     await render(hbs`
-      <TinymceEmber>
-        template block text
-      </TinymceEmber>
+      <TinymceEmber @editorContent={{this.editorContent}}/>
     `);
 
-    assert.equal(this.element.textContent.trim(), 'template block text');
+    this.set('editorContent', '<p>template block text</p>');
+
+    assert.equal(tinymce.activeEditor.getContent({format: 'html'}), '<p>template block text</p>');
   });
 });
