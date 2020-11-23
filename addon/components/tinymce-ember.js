@@ -5,6 +5,7 @@ import { debounce, scheduleOnce } from '@ember/runloop';
 export default Component.extend({
   editor: null,
   editorContent: '',
+  editorCurrentContent: '',
   editorCustomEvents: null,
   editorEvents: 'change keyup setcontent',
   editorId: null,
@@ -55,6 +56,11 @@ export default Component.extend({
       if (this.customEvents.length) {
         this.bindEditorCustomEvents(Editor);
       }
+
+      if (this.editorContent !== this.editorCurrentContent) {
+        Editor.setContent(this.editorContent);
+        this.set('editorCurrentContent', this.editorContent);
+      }
     }
   },
 
@@ -92,7 +98,10 @@ export default Component.extend({
       const NewContent = Editor.getContent({format: 'html'});
 
       if (this.editorContent !== NewContent) {
-        this.set('editorContent', NewContent);
+        this.setProperties({
+          editorContent: NewContent,
+          editorCurrentContent: NewContent
+        });
       }
     }
   },
@@ -105,6 +114,7 @@ export default Component.extend({
     const Editor = this.editor;
     if (Editor) {
       Editor.setContent(this.editorContent);
+      this.set('editorCurrentContent', this.editorContent);
       Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
 
       if (this.customEvents) {
