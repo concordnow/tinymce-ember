@@ -31,7 +31,7 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    let type = this.config.inline ? ((typeof this.inlineType === 'string' && this.inlineType) || 'div') : 'textarea';
+    let type = this.config?.inline ? ((typeof this.inlineType === 'string' && this.inlineType) || 'div') : 'textarea';
     let block = document.createElement(type);
 
     block.setAttribute('id', this.editorId);
@@ -143,13 +143,13 @@ export default Component.extend({
     }
     // Extend default and custom configurations
     const Config = {
-      ...this.config,
+      ...this.config ?? {},
       ...domElement,
       setup: editor => {
         this.set('editor', editor);
         editor.on('init', this.handleEditorInit.bind(this));
 
-        if (this.config.setup && typeof this.config.setup === 'function') {
+        if (this.config && this.config.setup && typeof this.config.setup === 'function') {
           this.config.setup(editor);
         }
       }
