@@ -2,6 +2,8 @@ import Component from '@ember/component';
 import { guidFor } from '@ember/object/internals';
 import { scheduleOnce } from '@ember/runloop';
 
+import tinymce from 'tinymce/tinymce';
+
 export default Component.extend({
   editor: null,
   editorContent: '',
@@ -129,7 +131,8 @@ export default Component.extend({
 
   initEditor() {
     // Importing tinymce module in your web page will run an IIFE that attaches tinymce to the window
-    if (!window.tinymce) {
+    let Editor = tinymce || window.tinymce;
+    if (!Editor) {
       throw new Error('TinyMCE hasn\'t been attached to the window hence not imported in your application.');
     }
 
@@ -157,6 +160,6 @@ export default Component.extend({
       }
     }
 
-    window.tinymce.init(Config);
+    Editor.init(Config);
   }
 });
