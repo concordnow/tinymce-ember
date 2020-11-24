@@ -4,11 +4,17 @@ import { scheduleOnce } from '@ember/runloop';
 
 import tinymce from 'tinymce/tinymce';
 
+const DEFAULT_CONFIG = {
+  base_url: 'tinymce',
+  theme: 'silver'
+};
+
 export default Component.extend({
   editor: null,
   editorContent: '',
   editorCurrentContent: '',
   editorCustomEvents: null,
+  editorDefaultConfig: null,
   editorEvents: 'change keyup setcontent',
   editorId: null,
   editorName: 'tinymce',
@@ -26,6 +32,7 @@ export default Component.extend({
     this.setProperties({
       customEvents: this.customEvents ?? [],
       editorCustomEvents: [],
+      editorDefaultConfig: DEFAULT_CONFIG,
       editorId: EditorId
     });
   },
@@ -51,7 +58,7 @@ export default Component.extend({
     this._super(...arguments);
 
     const Editor = this.editor;
-    if (Editor?.initialized) {
+    if (Editor) {
       Editor.setMode(this.disabled ? 'readonly' : 'design');
 
       if (this.editorCustomEvents.length) {
@@ -146,7 +153,7 @@ export default Component.extend({
     }
     // Extend default and custom configurations
     const Config = {
-      ...this.config ?? {},
+      ...this.config ?? this.editorDefaultConfig,
       ...domElement,
       setup: editor => {
         this.set('editor', editor);
