@@ -29,6 +29,14 @@ module('Integration | Component | tinymce-ember', function(hooks) {
     assert.equal(this.element.textContent.trim(), '');
   });
 
+  test('editor id contains editorName and has replaced not alphanumeric chars by - and lowercased all chars', async function(assert) {
+    this.set('editorName', 'Thomas Pynchon')
+    await render(hbs`<TinymceEmber @editorName={{this.editorName}}/>`);
+
+    let containsEditorName = tinymce.activeEditor.id.indexOf('thomas-pynchon') === 0;
+    assert.ok(containsEditorName, 'thomas-pynchon is not part of editor id');
+  });
+
   test('it renders with config', async function(assert) {
     await render(hbs`<TinymceEmber @config={{this.config}} />`);
 
