@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render } from '@ember/test-helpers';
+import { render, waitUntil} from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
  /* eslint-disable no-unused-vars */
@@ -53,5 +53,35 @@ module('Integration | Component | tinymce-ember', function(hooks) {
     this.set('editorContent', '<p>template block text</p>');
 
     assert.equal(tinymce.activeEditor.getContent({format: 'html'}), '<p>template block text</p>');
+  });
+
+  test('editor content update should be propagated', async function(assert) {
+    let value = '<p>template block text</p>';
+    let updatedValue = '<p>updated content</p>';
+
+    this.set('editorContent', value);
+    this.set('contentUpdateAction', (value) => {
+        this.set('editorContent', value);
+      }
+    )
+
+    await render(hbs`
+      <TinymceEmber
+        @config={{this.config}}
+        @editorContent={{this.editorContent}}
+        @onEditorContentChange={{action this.contentUpdateAction}}
+      />`);
+
+    await waitUntil(() => {
+      return tinymce.activeEditor.getContent({format: 'html'}) === value;
+    });
+
+    tinymce.activeEditor.setContent(updatedValue);
+
+    await waitUntil(() => {
+      return tinymce.activeEditor.getContent({format: 'html'}) === updatedValue;
+    });
+
+    assert.equal(this.editorContent, updatedValue);
   });
 });
