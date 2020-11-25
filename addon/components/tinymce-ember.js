@@ -107,7 +107,7 @@ export default Component.extend({
 
   handleEditorChange() {
     const Editor = this.editor;
-    if (Editor?.isDirty()) {
+    if (Editor) {
       const NewContent = Editor.getContent({format: 'html'});
 
       if (this.editorCurrentContent !== NewContent) {
