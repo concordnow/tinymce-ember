@@ -46,13 +46,22 @@ module('Integration | Component | tinymce-ember', function(hooks) {
   });
 
   test('it renders with config & content', async function(assert) {
+    let value = '<p>template block text</p>';
+    let updatedValue = '<p>updated content</p>';
+
+    this.set('editorContent', value);
+
     await render(hbs`
       <TinymceEmber @config={{this.config}} @editorContent={{this.editorContent}}/>
     `);
 
-    this.set('editorContent', '<p>template block text</p>');
+    await waitUntil(() => {
+      return tinymce.activeEditor.getContent({format: 'html'}) === value;
+    });
 
-    assert.equal(tinymce.activeEditor.getContent({format: 'html'}), '<p>template block text</p>');
+    this.set('editorContent', updatedValue);
+
+    assert.equal(tinymce.activeEditor.getContent({format: 'html'}), updatedValue);
   });
 
   test('editor content update should be propagated', async function(assert) {
