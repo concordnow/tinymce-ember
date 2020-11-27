@@ -10,6 +10,7 @@ const DEFAULT_CONFIG = {
 };
 
 export default Component.extend({
+  delayEditorChange: false,
   editor: null,
   editorContent: '',
   editorCurrentContent: '',
@@ -110,7 +111,9 @@ export default Component.extend({
   setEditorContent(content) {
     const Editor = this.editor;
     if (Editor) {
+      this.delayEditorChange = true;
       Editor.setContent(content);
+      this.delayEditorChange = false;
       let formattedContent = Editor.getContent({format: 'html'});
       this.setProperties({
         editorCurrentFormattedContent: formattedContent,
@@ -119,31 +122,39 @@ export default Component.extend({
     }
   },
 
+  onHandleEditorChange(Editor) {
+    const NewContent = Editor.getContent({format: 'html'});
+
+    if (this.editorCurrentFormattedContent !== NewContent) {
+      this.setProperties({
+        editorCurrentFormattedContent: NewContent,
+        editorCurrentContent: NewContent
+      })
+
+      if (typeof this.onEditorContentChange === 'function') {
+        this.onEditorContentChange(NewContent ?? '', Editor);
+      }
+    }
+  },
+
   handleEditorChange() {
     const Editor = this.editor;
     if (Editor) {
-      /*
-       * Editor.setContent is immediately triggered by setEditorContent method
-       * Need setEditorContent method to run commpletely before triggering the onEditorContentChange function
-       */
-      next(() => {
-        if (this.isDestroyed || this.isDestroying) {
-          return;
-        }
-
-        const NewContent = Editor.getContent({format: 'html'});
-
-        if (this.editorCurrentFormattedContent !== NewContent) {
-          this.setProperties({
-            editorCurrentFormattedContent: NewContent,
-            editorCurrentContent: NewContent
-          })
-
-          if (typeof this.onEditorContentChange === 'function') {
-            this.onEditorContentChange(NewContent ?? '', Editor);
+      if(this.delayEditorChange) {
+        /*
+         * Editor.setContent is immediately triggered by setEditorContent method
+         * Need setEditorContent method to run commpletely before triggering the onEditorContentChange function
+         */
+        next(() => {
+          if (this.isDestroyed || this.isDestroying) {
+            return;
           }
-        }
-      });
+
+          this.onHandleEditorChange(Editor);
+        });
+      } else {
+        this.onHandleEditorChange(Editor);
+      }
     }
   },
 
