@@ -1,6 +1,6 @@
 import Component from '@ember/component';
 import { guidFor } from '@ember/object/internals';
-import { scheduleOnce } from '@ember/runloop';
+import { next, scheduleOnce } from '@ember/runloop';
 
 import tinymce from 'tinymce/tinymce';
 
@@ -13,6 +13,7 @@ export default Component.extend({
   editor: null,
   editorContent: '',
   editorCurrentContent: '',
+  editorCurrentFormattedContent: '',
   editorCustomEvents: null,
   editorDefaultConfig: null,
   editorEvents: 'change keyup setcontent',
@@ -69,10 +70,8 @@ export default Component.extend({
         this.bindEditorCustomEvents(Editor);
       }
 
-      this.set('editorCurrentContent', (this.editorCurrentContent ?? Editor.getContent({format: 'html'})));
-
       if (this.editorContent !== this.editorCurrentContent) {
-        Editor.setContent(this.editorContent);
+        this.setEditorContent(this.editorContent);
       }
     }
   },
@@ -105,26 +104,53 @@ export default Component.extend({
     });
   },
 
+  /*
+   * Method to keep track on raw & formatted (by editor) html
+   */
+  setEditorContent(content) {
+    const Editor = this.editor;
+    if (Editor) {
+      Editor.setContent(content);
+      let formattedContent = Editor.getContent({format: 'html'});
+      this.setProperties({
+        editorCurrentFormattedContent: formattedContent,
+        editorCurrentContent: content
+      })
+    }
+  },
+
   handleEditorChange() {
     const Editor = this.editor;
     if (Editor) {
-      const NewContent = Editor.getContent({format: 'html'});
-
-      if (this.editorCurrentContent !== NewContent) {
-        this.set('editorCurrentContent', NewContent);
-
-        if (typeof this.onEditorContentChange === 'function') {
-          this.onEditorContentChange(NewContent ?? '', Editor);
+      /*
+       * Editor.setContent is immediately triggered by setEditorContent method
+       * Need setEditorContent method to run commpletely before triggering the onEditorContentChange function
+       */
+      next(() => {
+        if (this.isDestroyed || this.isDestroying) {
+          return;
         }
-      }
+
+        const NewContent = Editor.getContent({format: 'html'});
+
+        if (this.editorCurrentFormattedContent !== NewContent) {
+          this.setProperties({
+            editorCurrentFormattedContent: NewContent,
+            editorCurrentContent: NewContent
+          })
+
+          if (typeof this.onEditorContentChange === 'function') {
+            this.onEditorContentChange(NewContent ?? '', Editor);
+          }
+        }
+      });
     }
   },
 
   handleEditorInit() {
     const Editor = this.editor;
     if (Editor) {
-      Editor.setContent(this.editorContent);
-      this.set('editorCurrentContent', this.editorContent);
+      this.setEditorContent(this.editorContent);
 
       if (typeof this.onEditorContentChange === 'function') {
         Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
