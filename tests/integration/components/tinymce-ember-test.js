@@ -103,7 +103,7 @@ module('Integration | Component | tinymce-ember', function(hooks) {
     assert.equal(this.editorContent, updatedValue);
   });
 
-  test('typeIn', async function(assert) {
+  test('it renders and update on keypress', async function(assert) {
     let value = '<p>toto</p>';
     let updatedValue = '<p>Some default Texttoto</p>';
 
