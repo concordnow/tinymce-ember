@@ -46,17 +46,26 @@ module('Integration | Component | tinymce-ember', function(hooks) {
   });
 
   test('it renders with config & content', async function(assert) {
-    let value = '<p>template block text</p>';
-    let updatedValue = '<p>updated content</p>';
+    let value = '<div><p>template block text</p><p>template block text</p></div>';
+    let checkValue = '<div>\n<p>template block text</p>\n<p>template block text</p>\n</div>';
+    let updatedValue = '<div>\n<p>updated content</p>\n<p>updated content</p>\n</div>';
 
     this.set('editorContent', value);
+    this.set('contentUpdateAction', (value) => {
+        this.set('editorContent', value);
+      }
+    )
 
     await render(hbs`
-      <TinymceEmber @config={{this.config}} @editorContent={{this.editorContent}}/>
+      <TinymceEmber
+        @config={{this.config}}
+        @editorContent={{this.editorContent}}
+        @onEditorContentChange={{action this.contentUpdateAction}}
+      />
     `);
 
     await waitUntil(() => {
-      return tinymce.activeEditor.getContent({format: 'html'}) === value;
+      return tinymce.activeEditor.getContent({format: 'html'}) === checkValue;
     });
 
     this.set('editorContent', updatedValue);
@@ -86,6 +95,36 @@ module('Integration | Component | tinymce-ember', function(hooks) {
     });
 
     tinymce.activeEditor.setContent(updatedValue);
+
+    await waitUntil(() => {
+      return tinymce.activeEditor.getContent({format: 'html'}) === updatedValue;
+    });
+
+    assert.equal(this.editorContent, updatedValue);
+  });
+
+  test('typeIn', async function(assert) {
+    let value = '<p>toto</p>';
+    let updatedValue = '<p>Some default Texttoto</p>';
+
+    this.set('editorContent', value);
+    this.set('contentUpdateAction', (value) => {
+        this.set('editorContent', value);
+      }
+    )
+
+    await render(hbs`<TinymceEmber
+      @editorContent={{this.editorContent}}
+      @onEditorContentChange={{action this.contentUpdateAction}}/>
+    `);
+
+    await waitUntil(() => {
+      return tinymce.activeEditor.getContent({format: 'html'}) === value;
+    });
+
+    let editorBody = tinymce.activeEditor.getBody();
+
+    tinymce.activeEditor.execCommand( 'mceInsertContent', false, 'Some default Text' );
 
     await waitUntil(() => {
       return tinymce.activeEditor.getContent({format: 'html'}) === updatedValue;
