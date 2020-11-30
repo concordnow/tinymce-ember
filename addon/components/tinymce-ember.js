@@ -17,8 +17,6 @@ export default Component.extend({
   currentContent: '',
   currentFormattedContent: '',
 
-  defaultConfig: null,
-
   delayEditorChange: false,
 
   editor: null,
@@ -36,7 +34,6 @@ export default Component.extend({
     this.setProperties({
       customEvents: this.customEvents ?? [],
       customBoundEvents: [],
-      defaultConfig: DEFAULT_CONFIG,
       editorId: EditorId
     });
   },
@@ -192,7 +189,7 @@ export default Component.extend({
     }
     // Extend default and custom configurations
     const Config = {
-      ...this.config ?? this.defaultConfig,
+      ...this.config ?? DEFAULT_CONFIG,
       ...domElement,
       setup: editor => {
         this.set('editor', editor);
