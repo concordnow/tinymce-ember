@@ -1,0 +1,13 @@
+<DocsViewer as |viewer|>
+  <viewer.nav as |nav|>
+    {{nav.item "Introduction" "docs.index"}}
+    {{nav.item "Simple" "docs.simple"}}
+    {{nav.item "Inline" "docs.inline"}}
+    {{nav.item "Target" "docs.target"}}
+    {{nav.item "Disable" "docs.disable"}}
+  </viewer.nav>
+
+  <viewer.main>
+    {{outlet}}
+  </viewer.main>
+</DocsViewer>
