@@ -19,7 +19,7 @@ module('Integration | Component | tinymce-ember', function(hooks) {
   hooks.beforeEach(function() {
     this.setProperties({
       config: CONFIG,
-      editorContent: ''
+      content: ''
     });
   });
 
@@ -50,23 +50,23 @@ module('Integration | Component | tinymce-ember', function(hooks) {
     let checkValue = '<div>\n<p>template block text</p>\n<p>template block text</p>\n</div>';
     let updatedValue = '<div>\n<p>updated content</p>\n<p>updated content</p>\n</div>';
 
-    this.set('editorContent', value);
+    this.set('content', value);
     this.set('contentUpdateAction', (value) => {
-        this.set('editorContent', value);
+        this.set('content', value);
       }
     )
 
     await render(hbs`
       <TinymceEmber
         @config={{this.config}}
-        @editorContent={{this.editorContent}}
+        @content={{this.content}}
         @onEditorContentChange={{action this.contentUpdateAction}}/>`);
 
     await waitUntil(() => {
       return tinymce.activeEditor.getContent({format: 'html'}) === checkValue;
     });
 
-    this.set('editorContent', updatedValue);
+    this.set('content', updatedValue);
 
     assert.equal(tinymce.activeEditor.getContent({format: 'html'}), updatedValue);
   });
@@ -75,16 +75,16 @@ module('Integration | Component | tinymce-ember', function(hooks) {
     let value = '<p>template block text</p>';
     let updatedValue = '<p>updated content</p>';
 
-    this.set('editorContent', value);
+    this.set('content', value);
     this.set('contentUpdateAction', (value) => {
-        this.set('editorContent', value);
+        this.set('content', value);
       }
     )
 
     await render(hbs`
       <TinymceEmber
         @config={{this.config}}
-        @editorContent={{this.editorContent}}
+        @content={{this.content}}
         @onEditorContentChange={{action this.contentUpdateAction}}/>`);
 
     await waitUntil(() => {
@@ -97,21 +97,21 @@ module('Integration | Component | tinymce-ember', function(hooks) {
       return tinymce.activeEditor.getContent({format: 'html'}) === updatedValue;
     });
 
-    assert.equal(this.editorContent, updatedValue);
+    assert.equal(this.content, updatedValue);
   });
 
   test('it renders and update on keypress', async function(assert) {
     let value = '<p>toto</p>';
     let updatedValue = '<p>Some default Texttoto</p>';
 
-    this.set('editorContent', value);
+    this.set('content', value);
     this.set('contentUpdateAction', (value) => {
-        this.set('editorContent', value);
+        this.set('content', value);
       }
     )
 
     await render(hbs`<TinymceEmber
-      @editorContent={{this.editorContent}}
+      @content={{this.content}}
       @onEditorContentChange={{action this.contentUpdateAction}}/>`);
 
     await waitUntil(() => {
@@ -126,6 +126,6 @@ module('Integration | Component | tinymce-ember', function(hooks) {
       return tinymce.activeEditor.getContent({format: 'html'}) === updatedValue;
     });
 
-    assert.equal(this.editorContent, updatedValue);
+    assert.equal(this.content, updatedValue);
   });
 });
