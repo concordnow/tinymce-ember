@@ -7,9 +7,9 @@
     "tinymce",
     "editor"
   ],
-  "repository": "",
+  "repository": "https://github.com/concordnow/tinymce-ember",
   "license": "MIT",
-  "author": "",
+  "author": "Concord Worlwide Inc.",
   "directories": {
     "doc": "doc",
     "test": "tests"
