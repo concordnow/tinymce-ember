@@ -10,19 +10,21 @@ const DEFAULT_CONFIG = {
 };
 
 export default Component.extend({
+  customBoundEvents: null,
+  customEvents: null,
+
+  content: '',
+  currentContent: '',
+  currentFormattedContent: '',
+
+  defaultConfig: null,
+
   delayEditorChange: false,
+
   editor: null,
-  editorContent: '',
-  editorCurrentContent: '',
-  editorCurrentFormattedContent: '',
-  editorCustomEvents: null,
-  editorDefaultConfig: null,
   editorEvents: 'change keyup setcontent',
   editorId: null,
   editorName: 'tinymce',
-  editorTimeDebounce: 500,
-
-  customEvents: null,
 
   init() {
     this._super(...arguments);
@@ -33,8 +35,8 @@ export default Component.extend({
       .toLowerCase();
     this.setProperties({
       customEvents: this.customEvents ?? [],
-      editorCustomEvents: [],
-      editorDefaultConfig: DEFAULT_CONFIG,
+      customBoundEvents: [],
+      defaultConfig: DEFAULT_CONFIG,
       editorId: EditorId
     });
   },
@@ -63,7 +65,7 @@ export default Component.extend({
     if (Editor) {
       Editor.setMode(this.disabled ? 'readonly' : 'design');
 
-      if (this.editorCustomEvents.length) {
+      if (this.customBoundEvents.length) {
         this.unbindEditorCustomEvents(Editor);
       }
 
@@ -71,8 +73,8 @@ export default Component.extend({
         this.bindEditorCustomEvents(Editor);
       }
 
-      if (this.editorContent !== this.editorCurrentContent) {
-        this.setEditorContent(this.editorContent);
+      if (this.content !== this.currentContent) {
+        this.setEditorContent(this.content);
       }
     }
   },
@@ -84,7 +86,7 @@ export default Component.extend({
     if (Editor) {
       Editor.off(this.editorEvents, this.handleEditorChange.bind(this));
 
-      if (this.editorCustomEvents.length) {
+      if (this.customBoundEvents.length) {
         this.unbindEditorCustomEvents(Editor);
       }
 
@@ -94,13 +96,13 @@ export default Component.extend({
 
   bindEditorCustomEvents(Editor) {
     this.customEvents.forEach(event => {
-      this.editorCustomEvents.push(event);
+      this.customBoundEvents.push(event);
       Editor.on(event.name, event.handler);
     });
   },
 
   unbindEditorCustomEvents(Editor) {
-    this.editorCustomEvents.forEach(event => {
+    this.customBoundEvents.forEach(event => {
       Editor.off(event.name, event.handler);
     });
   },
@@ -116,8 +118,8 @@ export default Component.extend({
       this.delayEditorChange = false;
       let formattedContent = Editor.getContent({format: 'html'});
       this.setProperties({
-        editorCurrentFormattedContent: formattedContent,
-        editorCurrentContent: content
+        currentFormattedContent: formattedContent,
+        currentContent: content
       })
     }
   },
@@ -125,10 +127,10 @@ export default Component.extend({
   onHandleEditorChange(Editor) {
     const NewContent = Editor.getContent({format: 'html'});
 
-    if (this.editorCurrentFormattedContent !== NewContent) {
+    if (this.currentFormattedContent !== NewContent) {
       this.setProperties({
-        editorCurrentFormattedContent: NewContent,
-        editorCurrentContent: NewContent
+        currentFormattedContent: NewContent,
+        currentContent: NewContent
       })
 
       if (typeof this.onEditorContentChange === 'function') {
@@ -161,7 +163,7 @@ export default Component.extend({
   handleEditorInit() {
     const Editor = this.editor;
     if (Editor) {
-      this.setEditorContent(this.editorContent);
+      this.setEditorContent(this.content);
 
       if (typeof this.onEditorContentChange === 'function') {
         Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
@@ -190,7 +192,7 @@ export default Component.extend({
     }
     // Extend default and custom configurations
     const Config = {
-      ...this.config ?? this.editorDefaultConfig,
+      ...this.config ?? this.defaultConfig,
       ...domElement,
       setup: editor => {
         this.set('editor', editor);
