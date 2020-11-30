@@ -10,19 +10,79 @@ const DEFAULT_CONFIG = {
 };
 
 export default Component.extend({
+  /*
+   * Internal list of events that have been bound to the editor
+   */
   customBoundEvents: null,
+
+  /*
+   * List of events given to the editor
+   * type of event should be
+   *
+   * {
+   *    name: string,
+   *    handler: function
+   * }
+   *
+   * @argument customEvents
+   * @type null|[]
+   * @default null
+   */
   customEvents: null,
 
+  /*
+   * A given string to be set as editor's content
+   *
+   * @argument content
+   * @type string
+   * @default ''
+   */
   content: '',
+  /*
+   * Internal string properties used to determined if editor's content has changed
+   */
   currentContent: '',
   currentFormattedContent: '',
 
+  /*
+   * Internal boolean property used as a flag to signal end of editor's setContent job
+   */
   delayEditorChange: false,
 
+  /*
+   * Instance of the active editor once initialized
+   */
   editor: null,
+  /*
+   * A given string representing default bound editor's events
+   * Each of those events will call an onEditorContentChange function if given as parameter
+   *
+   * @argument editorEvents
+   * @type string
+   * @default 'change keyup setcontent'
+   */
   editorEvents: 'change keyup setcontent',
+  /*
+   * Internal string property built at init time to set editor
+   */
   editorId: null,
+  /*
+   * A given string bound to editor's id and textarea's name attribute
+   *
+   * @argument editorName
+   * @type string
+   * @default 'tinymce'
+   */
   editorName: 'tinymce',
+
+  /*
+   * A given function triggered at every editorEvents provided
+   *
+   * @argument onEditorContentChange
+   * @type null|function
+   * @default null
+   */
+  onEditorContentChange: null,
 
   init() {
     this._super(...arguments);
