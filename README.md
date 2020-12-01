@@ -1,7 +1,7 @@
 tinymce-ember
 ==============================================================================
 
-[Short description of the addon.]
+Ember addon that helps you integrate [TinyMCE](https://www.tiny.cloud/docs/) editor into your application.
 
 
 Compatibility
@@ -23,8 +23,13 @@ ember install tinymce-ember
 Usage
 ------------------------------------------------------------------------------
 
-[Longer description of how to use the addon in apps.]
+Please refer to the examples in the [documentation](https://concordnow.github.io/tinymce-ember)
 
+Thanks
+------------------------------------------------------------------------------
+
+* [TinyMCE React](https://github.com/tinymce/tinymce-react)
+* [EmberCLI AddonDocs](https://ember-learn.github.io/ember-cli-addon-docs/)
 
 Contributing
 ------------------------------------------------------------------------------
