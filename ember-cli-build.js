@@ -20,10 +20,16 @@ module.exports = function(defaults) {
     destDir: '/tests/tinymce'
   });
 
-  const skins = new Funnel('node_modules/', {
-    srcDir: 'tinymce/skins',
-    destDir: '/docs/tests/tinymce/skins'
-  });
+  let funnels = [tinymce];
 
-  return app.toTree([skins, tinymce]);
+  if (process.env.EMBER_ENV === 'development') {
+    const skins = new Funnel('node_modules/', {
+      srcDir: 'tinymce/skins',
+      destDir: '/docs/tests/tinymce/skins'
+    });
+
+    funnels.push(skins);
+  }
+
+  return app.toTree(funnels);
 };
