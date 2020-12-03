@@ -26,7 +26,80 @@ ember install tinymce-ember
 Usage
 ------------------------------------------------------------------------------
 
-Please refer to the examples in the [documentation](https://concordnow.github.io/tinymce-ember)
+TinyMCE is here set as devDependency for testing purpose only.
+
+You might need to create a funnel in the **ember-cli-build.js** file so the editor will locate skins
+```js
+const Funnel = require('broccoli-funnel');
+...
+const skins = new Funnel('node_modules/', {
+  srcDir: 'tinymce/skins',
+  destDir: '/skins'
+});
+
+return app.toTree([skins]);
+```
+
+The addon is designed in such way that it is the responsability of the application to provide the TinyMCE module.
+
+Basic
+------------------------------------------------------------------------------
+
+In the file where the editor is supposed to run
+```js
+import tinymce from 'tinymce/tinymce'; // eslint-disable-line no-unused-vars
+import 'tinymce/themes/silver';
+import 'tinymce/icons/default';
+```
+
+And in an initialization lifecycle hook (e.g. in the init)
+```js
+this.config = {
+  base_url: 'tests/tinymce',
+  theme: 'silver'
+}
+```
+
+Then include the addon in the wanted location
+```hbs
+<TinymceEmber @config={{this.config}} />
+```
+
+Inline
+------------------------------------------------------------------------------
+
+Editor can be init with the inline setting and some content
+```js
+this.config = {
+  base_url: 'tests/tinymce',
+  theme: 'silver',
+  inline: true
+};
+this.htmlStringValue = '<h1>Just a title to render the line, please click</p>'
+```
+```hbs
+<TinymceEmber @config={{this.config}} @content={{this.htmlStringValue}} />
+```
+
+Target
+------------------------------------------------------------------------------
+
+Addon doesn't come with a handlebars template file and a HTML structure in it, so an HTML element can also be provided to init the editor.
+
+```js
+const Target = document.getElementById('targeted-element');
+
+this.config = {
+  base_url: 'tests/tinymce',
+  target: Target,
+  theme: 'silver'
+};
+```
+
+```hbs
+<div id="targeted-element"></div>
+<TinymceEmber @config={{this.config}}/>
+```
 
 Thanks
 ------------------------------------------------------------------------------
