@@ -15,15 +15,33 @@ module.exports = function(defaults) {
     behave. You most likely want to be modifying `./index.js` or app's build file
   */
 
-  const tinymce = new Funnel('node_modules/', {
-    srcDir: 'tinymce',
-    destDir: '/tests/tinymce'
+  const tinymceIcons = new Funnel('node_modules/', {
+    srcDir: 'tinymce/icons',
+    destDir: '/tinymce/icons'
   });
 
-  const skins = new Funnel('node_modules/', {
+  const tinymcePlugins = new Funnel('node_modules/', {
+    srcDir: 'tinymce/plugins',
+    destDir: '/tinymce/plugins'
+  });
+
+  const tinymceSkins = new Funnel('node_modules/', {
     srcDir: 'tinymce/skins',
-    destDir: '/docs/tests/tinymce/skins'
+    destDir: '/tinymce/skins'
   });
 
-  return app.toTree([skins, tinymce]);
+  const tinymceThemes = new Funnel('node_modules/', {
+    srcDir: 'tinymce/themes',
+    destDir: '/tinymce/themes'
+  });
+
+  app.import(
+    'node_modules/tinymce/tinymce.js', {
+      using: [
+        { transformation: 'cjs', as: 'tinymce/tinymce' }
+      ]
+    }
+  );
+
+  return app.toTree([tinymceIcons, tinymcePlugins, tinymceSkins, tinymceThemes]);
 };

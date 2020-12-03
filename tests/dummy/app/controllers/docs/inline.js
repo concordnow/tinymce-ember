@@ -1,11 +1,7 @@
 import Controller from '@ember/controller';
 
-import tinymce from 'tinymce/tinymce'; // eslint-disable-line no-unused-vars
-import 'tinymce/themes/silver';
-import 'tinymce/icons/default';
-
 const CONFIG = {
-  base_url: 'tests/tinymce',
+  base_url: `${document.location.origin}/tinymce`,
   theme: 'silver',
   inline: true
 };
