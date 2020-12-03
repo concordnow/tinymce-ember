@@ -8,10 +8,6 @@ export default class Router extends AddonDocsRouter {
 
 Router.map(function() {
   docsRoute(this, function() {
-    this.route('simple');
-    this.route('inline');
-    this.route('target');
-    this.route('disable');
   });
   this.route('not-found', { path: '/*path' });
 });
