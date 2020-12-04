@@ -6,6 +6,11 @@ const Funnel = require('broccoli-funnel');
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
+    fingerprint: {
+      exclude: [
+        'tinymce/**/**'
+      ],
+    },
   });
 
   /*
