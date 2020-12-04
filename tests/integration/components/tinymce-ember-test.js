@@ -3,7 +3,6 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, waitUntil} from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
- /* eslint-disable no-unused-vars */
 import tinymce from 'tinymce/tinymce';
 
 const CONFIG = {
@@ -117,8 +116,6 @@ module('Integration | Component | tinymce-ember', function(hooks) {
     await waitUntil(() => {
       return tinymce.activeEditor.getContent({format: 'html'}) === value;
     });
-
-    let editorBody = tinymce.activeEditor.getBody();
 
     tinymce.activeEditor.execCommand( 'mceInsertContent', false, 'Some default Text' );
 
