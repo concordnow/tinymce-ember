@@ -40,6 +40,11 @@ module.exports = function(defaults) {
     destDir: '/tinymce/themes'
   });
 
+  const tinymceTest = new Funnel('node_modules/', {
+    srcDir: 'tinymce',
+    destDir: '/tests/tinymce'
+  });
+
   app.import(
     'node_modules/tinymce/tinymce.js', {
       using: [
@@ -48,5 +53,5 @@ module.exports = function(defaults) {
     }
   );
 
-  return app.toTree([tinymceIcons, tinymcePlugins, tinymceSkins, tinymceThemes]);
+  return app.toTree([tinymceTest, tinymceIcons, tinymcePlugins, tinymceSkins, tinymceThemes]);
 };
