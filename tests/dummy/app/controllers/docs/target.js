@@ -1,7 +1,8 @@
 import Controller from '@ember/controller';
+import config from 'dummy/config/environment';
 
 const CONFIG = {
-  base_url: `${document.location.origin}/tinymce`,
+  base_url: `${document.location.origin}${config.rootURL}tinymce`,
   theme: 'silver'
 };
 
