@@ -9,13 +9,16 @@ const DEFAULT_CONFIG = {
   theme: 'silver'
 };
 
+/**
+ * A tinymce ember component to init and update TInyMCE's editor
+ *
+ * @class TinymceEmber
+ * @public
+ */
 export default Component.extend({
-  /*
-   * Internal list of events that have been bound to the editor
-   */
-  customBoundEvents: null,
+  customBoundEvents: null, // Internal list of events that have been bound to the editor
 
-  /*
+  /**
    * List of events given to the editor
    * type of event should be
    *
@@ -30,7 +33,7 @@ export default Component.extend({
    */
   customEvents: null,
 
-  /*
+  /**
    * A given string to be set as editor's content
    *
    * @argument content
@@ -38,22 +41,14 @@ export default Component.extend({
    * @default ''
    */
   content: '',
-  /*
-   * Internal string properties used to determined if editor's content has changed
-   */
-  currentContent: '',
+  currentContent: '', // Internal string properties used to determined if editor's content has changed
   currentFormattedContent: '',
 
-  /*
-   * Internal boolean property used as a flag to signal end of editor's setContent job
-   */
-  delayEditorChange: false,
+  delayEditorChange: false, // Internal boolean property used as a flag to signal end of editor's setContent job
 
-  /*
-   * Instance of the active editor once initialized
-   */
-  editor: null,
-  /*
+  editor: null, // Instance of the active editor once initialized
+
+  /**
    * A given string representing default bound editor's events
    * Each of those events will call an onEditorContentChange function if given as parameter
    *
@@ -62,11 +57,9 @@ export default Component.extend({
    * @default 'change keyup setcontent'
    */
   editorEvents: 'change keyup setcontent',
-  /*
-   * Internal string property built at init time to set editor
-   */
-  editorId: null,
-  /*
+  editorId: null, // Internal string property built at init time to set editor
+
+  /**
    * A given string bound to editor's id and textarea's name attribute
    *
    * @argument editorName
@@ -75,7 +68,7 @@ export default Component.extend({
    */
   editorName: 'tinymce',
 
-  /*
+  /**
    * A given function triggered at every editorEvents provided
    *
    * @argument onEditorContentChange
