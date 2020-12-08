@@ -19,26 +19,28 @@ export default Component.extend({
   customBoundEvents: null, // Internal list of events that have been bound to the editor
 
   /**
-   * List of events given to the editor
-   * type of event should be
-   *
-   * {
-   *    name: string,
-   *    handler: function
-   * }
-   *
-   * @argument customEvents
-   * @type null|[]
-   * @default null
+    List of events given to the editor
+
+    Type of event should be
+
+   ```js
+    {
+       name: string,
+       handler: function
+    }
+   ```
+    @argument customEvents
+    @type null|[]
+    @default null
    */
   customEvents: null,
 
   /**
-   * A given string to be set as editor's content
-   *
-   * @argument content
-   * @type string
-   * @default ''
+    A given string to be set as editor's content
+
+    @argument content
+    @type string
+    @default ''
    */
   content: '',
   currentContent: '', // Internal string properties used to determined if editor's content has changed
@@ -49,31 +51,32 @@ export default Component.extend({
   editor: null, // Instance of the active editor once initialized
 
   /**
-   * A given string representing default bound editor's events
-   * Each of those events will call an onEditorContentChange function if given as parameter
-   *
-   * @argument editorEvents
-   * @type string
-   * @default 'change keyup setcontent'
+    A given string representing default bound editor's events
+
+    Each of those events will call an `onEditorContentChange` function if given as parameter
+
+    @argument editorEvents
+    @type string
+    @default 'change keyup setcontent'
    */
   editorEvents: 'change keyup setcontent',
   editorId: null, // Internal string property built at init time to set editor
 
   /**
-   * A given string bound to editor's id and textarea's name attribute
-   *
-   * @argument editorName
-   * @type string
-   * @default 'tinymce'
+    A given string bound to editor's id and textarea's name attribute
+
+    @argument editorName
+    @type string
+    @default 'tinymce'
    */
   editorName: 'tinymce',
 
   /**
-   * A given function triggered at every editorEvents provided
-   *
-   * @argument onEditorContentChange
-   * @type null|function
-   * @default null
+    A given function triggered at every `editorEvents` provided
+
+    @argument onEditorContentChange
+    @type null|function
+    @default null
    */
   onEditorContentChange: null,
 
