@@ -127,7 +127,7 @@ export default Component.extend({
       }
 
       if (this.content !== this.currentContent) {
-        this.setEditorContent(this.content);
+        this.setEditorContent(this.content || '');
       }
     }
   },
