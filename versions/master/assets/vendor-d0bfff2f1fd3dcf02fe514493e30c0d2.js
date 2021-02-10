@@ -11013,7 +11013,7 @@ this._super.apply(this,arguments)
 var t=(null===(e=this.config)||void 0===e?void 0:e.inline)?"string"==typeof this.inlineType&&this.inlineType||"div":"textarea",n=document.createElement(t)
 n.setAttribute("id",this.editorId),"textarea"===t&&n.setAttribute("name",this.editorName),this.element.append(n),Ember.run.scheduleOnce("afterRender",this,this.initEditor)},didReceiveAttrs:function(){this._super.apply(this,arguments)
 var e=this.editor
-e&&(e.setMode(this.disabled?"readonly":"design"),this.customBoundEvents.length&&this.unbindEditorCustomEvents(e),this.customEvents.length&&this.bindEditorCustomEvents(e),this.content!==this.currentContent&&this.setEditorContent(this.content))},willDestroyElement:function(){this._super.apply(this,arguments)
+e&&(e.setMode(this.disabled?"readonly":"design"),this.customBoundEvents.length&&this.unbindEditorCustomEvents(e),this.customEvents.length&&this.bindEditorCustomEvents(e),this.content!==this.currentContent&&this.setEditorContent(this.content||""))},willDestroyElement:function(){this._super.apply(this,arguments)
 var e=this.editor
 e&&(e.off(this.editorEvents,this.handleEditorChange.bind(this)),this.customBoundEvents.length&&this.unbindEditorCustomEvents(e),e.remove())},bindEditorCustomEvents:function(e){var t=this
 this.customEvents.forEach((function(n){t.customBoundEvents.push(n),e.on(n.name,n.handler)}))},unbindEditorCustomEvents:function(e){this.customBoundEvents.forEach((function(t){e.off(t.name,t.handler)}))},setEditorContent:function(e){var t=this.editor
