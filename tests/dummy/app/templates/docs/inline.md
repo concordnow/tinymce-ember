@@ -12,7 +12,7 @@ this.config = {
 this.htmlStringValue = '<h1>Just a title to render the line, please click</p>'
 ```
 ```hbs
-<TinymceEmber @config={{this.config}} @content={{this.htmlStringValue}} />
+<Editor @config={{this.config}} @content={{this.htmlStringValue}} />
 ```
 
-<TinymceEmber @config={{this.config}} @content={{this.htmlStringValue}} />
+<Editor @config={{this.config}} @content={{this.htmlStringValue}} />

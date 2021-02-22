@@ -10,7 +10,7 @@ const DEFAULT_CONFIG = {
 };
 
 /**
- * A tinymce ember component to init and update TInyMCE's editor
+ * A tinymce ember component to init and update TinyMCE's editor
  *
  * @class TinymceEmber
  * @public

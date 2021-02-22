@@ -1,1 +1,0 @@
-export { default } from 'tinymce-ember/components/tinymce-ember';

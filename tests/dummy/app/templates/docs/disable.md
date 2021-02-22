@@ -16,8 +16,8 @@ actions: {
 ```
 ```hbs
 <button {{on 'click' (action 'toggleDisabled')}}>toggle disabled</button>
-<TinymceEmber @disabled={{this.disabled}} />
+<Editor @disabled={{this.disabled}} />
 ```
 
 <button class="docs-btn docs-mb-2" {{on 'click' (action 'toggleDisabled')}}>toggle disabled</button>
-<TinymceEmber @config={{this.config}} @disabled={{this.disabled}} />
+<Editor @config={{this.config}} @disabled={{this.disabled}} />

@@ -16,8 +16,8 @@ this.config = {
 
 ```hbs
 <div id="targeted-element"></div>
-<TinymceEmber @config={{this.config}}/>
+<Editor @config={{this.config}}/>
 ```
 
 <div id="targeted-element"></div>
-<TinymceEmber @config={{this.config}}/>
+<Editor @config={{this.config}}/>

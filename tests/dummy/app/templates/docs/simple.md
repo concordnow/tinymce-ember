@@ -11,7 +11,7 @@ import 'tinymce/icons/default';
 
 Then include the addon in the wanted location
 ```hbs
-<TinymceEmber />
+<Editor />
 ```
 
-<TinymceEmber @config={{this.config}} />
+<Editor @config={{this.config}} />
