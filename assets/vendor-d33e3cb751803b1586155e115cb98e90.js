@@ -11022,7 +11022,7 @@ var n=t.getContent({format:"html"})
 this.setProperties({currentFormattedContent:n,currentContent:e})}},onHandleEditorChange:function(e){var t=e.getContent({format:"html"})
 this.currentFormattedContent!==t&&(this.setProperties({currentFormattedContent:t,currentContent:t}),"function"==typeof this.onEditorContentChange&&this.onEditorContentChange(null!=t?t:"",e))},handleEditorChange:function(){var e=this,t=this.editor
 t&&(this.delayEditorChange?Ember.run.next((function(){e.isDestroyed||e.isDestroying||e.onHandleEditorChange(t)})):this.onHandleEditorChange(t))},handleEditorInit:function(){var e=this.editor
-e&&(this.setEditorContent(this.content),"function"==typeof this.onEditorContentChange&&e.on(this.editorEvents,this.handleEditorChange.bind(this)),this.customEvents&&this.bindEditorCustomEvents(e))},initEditor:function(){var e,n=this,i=t.default||window.tinymce
+e&&(this.setEditorContent(this.content||""),"function"==typeof this.onEditorContentChange&&e.on(this.editorEvents,this.handleEditorChange.bind(this)),this.customEvents&&this.bindEditorCustomEvents(e))},initEditor:function(){var e,n=this,i=t.default||window.tinymce
 if(!i)throw new Error("TinyMCE hasn't been attached to the window hence not imported in your application.")
 var a={selector:"#".concat(this.editorId)}
 this.target&&(a.target=this.target,a.selector=void 0)
