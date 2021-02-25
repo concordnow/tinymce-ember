@@ -216,7 +216,7 @@ export default Component.extend({
   handleEditorInit() {
     const Editor = this.editor;
     if (Editor) {
-      this.setEditorContent(this.content);
+      this.setEditorContent(this.content || '');
 
       if (typeof this.onEditorContentChange === 'function') {
         Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
