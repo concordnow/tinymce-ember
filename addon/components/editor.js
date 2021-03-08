@@ -249,11 +249,12 @@ export default Component.extend({
       ...domElement,
       setup: editor => {
         this.set('editor', editor);
-        editor.on('init', this.handleEditorInit.bind(this));
 
         if (this.config && this.config.setup && typeof this.config.setup === 'function') {
           this.config.setup(editor);
         }
+
+        editor.on('init', this.handleEditorInit.bind(this));
 
         editor.setMode(this.disabled ? 'readonly' : 'design');
       }
