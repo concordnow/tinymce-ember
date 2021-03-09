@@ -11035,7 +11035,7 @@ e&&(this.setEditorContent(this.content||""),"function"==typeof this.onEditorCont
 if(!i)throw new Error("TinyMCE hasn't been attached to the window hence not imported in your application.")
 var a={selector:"#".concat(this.editorId)}
 this.target&&(a.target=this.target,a.selector=void 0)
-var s=r(r(r({},null!==(e=this.config)&&void 0!==e?e:o),a),{},{setup:function(e){n.set("editor",e),e.on("init",n.handleEditorInit.bind(n)),n.config&&n.config.setup&&"function"==typeof n.config.setup&&n.config.setup(e),e.setMode(n.disabled?"readonly":"design")}})
+var s=r(r(r({},null!==(e=this.config)&&void 0!==e?e:o),a),{},{setup:function(e){n.set("editor",e),n.config&&n.config.setup&&"function"==typeof n.config.setup&&n.config.setup(e),e.on("init",n.handleEditorInit.bind(n)),e.setMode(n.disabled?"readonly":"design")}})
 i.init(s)}})
 e.default=a}))
 var __ember_auto_import__=function(e){function t(t){for(var r,a,s=t[0],u=t[1],l=t[2],d=0,f=[];d<s.length;d++)a=s[d],Object.prototype.hasOwnProperty.call(i,a)&&i[a]&&f.push(i[a][0]),i[a]=0
