@@ -85,7 +85,7 @@ export default Component.extend({
 
     // Generate and set editor's id for textarea
     const EditorId = `${this.editorName}-${guidFor(this)}`
-      .replaceAll(/[^a-z0-9]/gi, '-')
+      .replace(/[^a-z0-9]/gi, '-')
       .toLowerCase();
     this.setProperties({
       customEvents: this.customEvents ?? [],
