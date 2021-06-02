@@ -1,5 +1,9 @@
 # Change log
 
+##[1.2.1] 2021-06-02
+### Fix
+- Remove use of String.prototype.replaceAll
+
 ##[1.2.0] 2021-03-09
 ### Dependency
 - Update elliptic from 6.5.3 to 6.5.4
