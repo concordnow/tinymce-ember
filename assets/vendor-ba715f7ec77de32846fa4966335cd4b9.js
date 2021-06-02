@@ -11016,7 +11016,7 @@ t&&(r=r.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerab
 t%2?n(Object(r),!0).forEach((function(t){i(e,t,r[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(r)):n(Object(r)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(r,t))}))}return e}function i(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var o={base_url:"tinymce",theme:"silver"},a=Ember.Component.extend({customBoundEvents:null,customEvents:null,content:"",currentContent:"",currentFormattedContent:"",delayEditorChange:!1,editor:null,editorEvents:"change keyup setcontent",editorId:null,editorName:"tinymce",onEditorContentChange:null,init:function(){var e
 this._super.apply(this,arguments)
-var t="".concat(this.editorName,"-").concat(Ember.guidFor(this)).replaceAll(/[^a-z0-9]/gi,"-").toLowerCase()
+var t="".concat(this.editorName,"-").concat(Ember.guidFor(this)).replace(/[^a-z0-9]/gi,"-").toLowerCase()
 this.setProperties({customEvents:null!==(e=this.customEvents)&&void 0!==e?e:[],customBoundEvents:[],editorId:t})},didInsertElement:function(){var e
 this._super.apply(this,arguments)
 var t=(null===(e=this.config)||void 0===e?void 0:e.inline)?"string"==typeof this.inlineType&&this.inlineType||"div":"textarea",n=document.createElement(t)
