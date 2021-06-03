@@ -1,7 +1,7 @@
 tinymce-ember
 ==============================================================================
 
-[![Build Status](https://travis-ci.org/concordnow/tinymce-ember.svg?branch=master)](https://travis-ci.org/concordnow/tinymce-ember)
+[![Build Status](https://travis-ci.com/concordnow/tinymce-ember.svg?branch=master)](https://travis-ci.com/concordnow/tinymce-ember)
 [![Ember Observer Score](https://emberobserver.com/badges/tinymce-ember.svg)](https://emberobserver.com/addons/tinymce-ember)
 [![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/concordnow/tinymce-ember)
 
