@@ -32,7 +32,6 @@ Thanks
 ------------------------------------------------------------------------------
 
 * [TinyMCE React](https://github.com/tinymce/tinymce-react)
-* [EmberCLI AddonDocs](https://ember-learn.github.io/ember-cli-addon-docs/)
 
 Contributing
 ------------------------------------------------------------------------------
