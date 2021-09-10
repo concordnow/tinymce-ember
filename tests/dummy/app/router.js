@@ -10,7 +10,6 @@ Router.map(function() {
   this.route('docs', function () {
     this.route('simple');
     this.route('inline');
-    this.route('target');
     this.route('disable');
     this.route('modifiers', function () {
       this.route('editor');

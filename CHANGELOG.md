@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Requires ember-auto-import >= 2
 - Move to modifiers
 
+### Removed
+- 'Target' feature option
+
 ## [1.2.1] - 2021-06-02
 
 ### Fixed
