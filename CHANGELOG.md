@@ -1,16 +1,37 @@
-# Change log
+# Changelog
+All notable changes to this project will be documented in this file.
 
-##[1.2.1] 2021-06-02
-### Fix
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+### Changed
+- Bump Node requirement to v12 minimum
+- Requires ember-auto-import >= 2
+- Move to modifiers
+
+## [1.2.1] - 2021-06-02
+
+### Fixed
 - Remove use of String.prototype.replaceAll
 
-##[1.2.0] 2021-03-09
-### Dependency
-- Update elliptic from 6.5.3 to 6.5.4
-- UPdate ini from 1.3.5 to 1.3.8
+## [1.2.0] - 2021-03-09
 
-##[1.1.0] 2021-03-09
-### Dependency
+### Changed
+- Update elliptic from 6.5.3 to 6.5.4
+- Update ini from 1.3.5 to 1.3.8
+
+## [1.1.0] - 2021-03-09
+
+### Changed
 - Update TinyMCE to 5.6.0
-### Fix
+
+### Fixed
 - Run on init function after setup config
+
+[1.2.1]: https://github.com/concordnow/tinymce-ember/compare/v1.2.0...v1.2.1
+[1.2.0]: https://github.com/concordnow/tinymce-ember/compare/v1.1.0...v1.2.0
+[1.1.0]: https://github.com/concordnow/tinymce-ember/releases/tag/v1.1.0
+
+[Unreleased]: https://github.com/concordnow/tinymce-ember/compare/v1.2.1...HEAD
