@@ -1,0 +1,38 @@
+{{!-- template-lint-disable no-implicit-this --}}
+{{page-title "Editor"}}
+
+{{! MD-BLOCK }}
+# &lcub;&lcub;editor&rcub;&rcub;
+
+## API
+
+**customEvents**: *Array*
+
+Defaults to `[]`.
+
+List of events given to the editor
+
+Type of event should be
+
+```js
+{
+    name: string,
+    handler: function
+}
+```
+
+
+**content**: *String*
+
+Defaults to `''`.
+
+A given string to be set as editor's content
+
+
+**onEditorContentChange**: *String*
+
+Defaults to `'change keyup setcontent'`.
+
+Each of those events will call an `onEditorContentChange` function if given as parameter
+
+{{! MD-BLOCK }}

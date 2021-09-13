@@ -1,13 +1,11 @@
-<DocsViewer as |viewer|>
-  <viewer.nav as |nav|>
-    {{nav.item "Introduction" "docs.index"}}
-    {{nav.item "Simple" "docs.simple"}}
-    {{nav.item "Inline" "docs.inline"}}
-    {{nav.item "Target" "docs.target"}}
-    {{nav.item "Disable" "docs.disable"}}
-  </viewer.nav>
+{{page-title "Documentation"}}
 
-  <viewer.main>
-    {{outlet}}
-  </viewer.main>
-</DocsViewer>
+<div class="px-4 mx-auto lg:px-6 max-w-screen-2xl">
+  <div class="relative lg:flex">
+    <SidebarNav />
+
+    <article class="flex-1 w-full min-w-0 px-0 py-12 lg:px-4">
+      {{outlet}}
+    </article>
+  </div>
+</div>

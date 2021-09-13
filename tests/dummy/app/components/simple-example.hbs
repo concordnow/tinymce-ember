@@ -1,0 +1,4 @@
+{{! BEGIN-SNIPPET simple-example }}
+{{this.content}}
+<textarea name="my-editor" {{editor content=this.content onEditorContentChange=(fn (mut this.content))}}></textarea>
+{{! END-SNIPPET }}
