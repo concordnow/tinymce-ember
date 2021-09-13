@@ -7,9 +7,7 @@ module.exports = function (defaults) {
   let app = new EmberAddon(defaults, {
     // Add options here
     fingerprint: {
-      exclude: [
-        'tinymce/**/**'
-      ],
+      exclude: ['tinymce/**/**'],
     },
   });
 
@@ -22,36 +20,38 @@ module.exports = function (defaults) {
 
   const tinymceIcons = new Funnel('node_modules/', {
     srcDir: 'tinymce/icons',
-    destDir: '/tinymce/icons'
+    destDir: '/tinymce/icons',
   });
 
   const tinymcePlugins = new Funnel('node_modules/', {
     srcDir: 'tinymce/plugins',
-    destDir: '/tinymce/plugins'
+    destDir: '/tinymce/plugins',
   });
 
   const tinymceSkins = new Funnel('node_modules/', {
     srcDir: 'tinymce/skins',
-    destDir: '/tinymce/skins'
+    destDir: '/tinymce/skins',
   });
 
   const tinymceThemes = new Funnel('node_modules/', {
     srcDir: 'tinymce/themes',
-    destDir: '/tinymce/themes'
+    destDir: '/tinymce/themes',
   });
 
   const tinymceTest = new Funnel('node_modules/', {
     srcDir: 'tinymce',
-    destDir: '/tests/tinymce'
+    destDir: '/tests/tinymce',
   });
 
-  app.import(
-    'node_modules/tinymce/tinymce.js', {
-      using: [
-        { transformation: 'cjs', as: 'tinymce/tinymce' }
-      ]
-    }
-  );
+  app.import('node_modules/tinymce/tinymce.js', {
+    using: [{ transformation: 'cjs', as: 'tinymce/tinymce' }],
+  });
 
-  return app.toTree([tinymceTest, tinymceIcons, tinymcePlugins, tinymceSkins, tinymceThemes]);
+  return app.toTree([
+    tinymceTest,
+    tinymceIcons,
+    tinymcePlugins,
+    tinymceSkins,
+    tinymceThemes,
+  ]);
 };
