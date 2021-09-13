@@ -1,4 +1,58 @@
 :root {
-  --brand-primary: #03A9F4;
+  --brand-primary: #03a9f4;
 }
 
+/**
+ * Need to increase Prism CSS priority over tinymce one
+ *
+ * Copy of original prism okaidia theme but with "prism--" prefix
+ * https://github.com/PrismJS/prism/blob/master/themes/prism-okaidia.css
+ *
+ * okaidia theme for JavaScript, CSS and HTML
+ * Loosely based on Monokai textmate theme by http://www.monokai.nl/
+ * @author ocodia
+ */
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #f8f8f2 !important;
+  background: none !important;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3) !important;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace !important;
+  font-size: 1em !important;
+  text-align: left !important;
+  white-space: pre !important;
+  word-spacing: normal !important;
+  word-break: normal !important;
+  word-wrap: normal !important;
+  line-height: 1.5 !important;
+
+  -moz-tab-size: 4 !important;
+  -o-tab-size: 4 !important;
+  tab-size: 4 !important;
+
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
+  hyphens: none !important;
+}
+
+/* Code blocks */
+pre[class*='language-'] {
+  padding: 1em !important;
+  margin: 0.5em 0 !important;
+  overflow: auto !important;
+  border-radius: 0.3em !important;
+}
+
+:not(pre) > code[class*='language-'],
+pre[class*='language-'] {
+  background: #272822 !important;
+}
+
+/* Inline code */
+:not(pre) > code[class*='language-'] {
+  padding: 0.1em !important;
+  border-radius: 0.3em !important;
+  white-space: normal !important;
+}
