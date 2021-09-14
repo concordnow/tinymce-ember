@@ -38,6 +38,7 @@
     "@embroider/test-setup": "^0.44.1",
     "@glimmer/component": "^1.0.3",
     "@glimmer/tracking": "^1.0.3",
+    "@release-it/keep-a-changelog": "^2.3.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^3.0.3",
