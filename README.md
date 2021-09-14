@@ -1,9 +1,8 @@
 tinymce-ember
 ==============================================================================
 
-[![Build Status](https://travis-ci.com/concordnow/tinymce-ember.svg?branch=master)](https://travis-ci.com/concordnow/tinymce-ember)
+[![Build Status](https://github.com/concordnow/tinymce-ember/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/concordnow/tinymce-ember/actions/workflows/main.yml)
 [![Ember Observer Score](https://emberobserver.com/badges/tinymce-ember.svg)](https://emberobserver.com/addons/tinymce-ember)
-[![This project is using Percy.io for visual regression testing.](https://percy.io/static/images/percy-badge.svg)](https://percy.io/concordnow/tinymce-ember)
 
 Ember addon that helps you integrate [TinyMCE](https://www.tiny.cloud/docs/) editor into your application.
 
