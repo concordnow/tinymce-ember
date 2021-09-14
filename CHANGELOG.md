@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [2.0.0] - 2021-09-14
+
 ### Changed
 - Bump Node requirement to v12 minimum
 - Requires ember-auto-import >= 2
@@ -33,8 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Run on init function after setup config
 
+[2.0.0]: https://github.com/concordnow/tinymce-ember/compare/v1.2.1...v2.0.0
 [1.2.1]: https://github.com/concordnow/tinymce-ember/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/concordnow/tinymce-ember/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/concordnow/tinymce-ember/releases/tag/v1.1.0
 
-[Unreleased]: https://github.com/concordnow/tinymce-ember/compare/v1.2.1...HEAD
+[Unreleased]: https://github.com/concordnow/tinymce-ember/compare/v2.0.0...HEAD
