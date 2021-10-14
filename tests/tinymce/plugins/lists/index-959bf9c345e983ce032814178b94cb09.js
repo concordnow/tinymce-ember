@@ -1,1 +1,1 @@
-require("./plugin-e50c419ef7a67dedb2fda5edb62cbde1.js")
+require("./plugin-72b8e35d02fd4f125c57bbfd0fbbf5ab.js")

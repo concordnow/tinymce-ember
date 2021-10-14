@@ -1,9 +1,10 @@
 {
 	"name": "tinymce",
-	"version": "5.7.1",
+	"version": "5.10.0",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/tinymce/tinymce-dist.git"
+		"url": "https://github.com/tinymce/tinymce.git",
+		"directory": "modules/tinymce"
 	},
 	"description": "Web based JavaScript HTML WYSIWYG editor control.",
 	"author": "Tiny Technologies, Inc",
@@ -11,18 +12,25 @@
 	"types": "tinymce.d.ts",
 	"license": "LGPL-2.1",
 	"keywords": [
-		"editor",
 		"wysiwyg",
 		"tinymce",
 		"richtext",
 		"javascript",
-		"html"
+		"html",
+		"text",
+		"rich editor",
+		"rich text editor",
+		"rte",
+		"rich text",
+		"contenteditable",
+		"editing"
 	],
+	"homepage": "https://www.tiny.cloud/",
 	"bugs": {
 		"url": "https://github.com/tinymce/tinymce/issues"
 	}
 
-,"_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-5.7.1.tgz"
-,"_integrity": "sha512-1gY8RClc734srSlkYwY0MQzmkS1j73PuPC+nYtNtrrQVPY9VNcZ4bOiRwzTbdjPPD8GOtv6BAk8Ww/H2RiqKpA=="
-,"_from": "tinymce@5.7.1"
+,"_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-5.10.0.tgz"
+,"_integrity": "sha512-SaqBK8GtTKYSsTfhKdN0+NrZRgmVWO+j3fvgzLjt0t/g0osNzRH5os8icm2Rv5HvaeTd4TpxetUuLE+R9yg/yg=="
+,"_from": "tinymce@5.10.0"
 }
