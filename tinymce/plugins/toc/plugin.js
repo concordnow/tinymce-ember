@@ -15,7 +15,7 @@ f.element.id=f.id
 var m=l[s+1]&&l[s+1].level
 if(d===f.level)c+="<li>"
 else for(var v=d;v<f.level;v++)c+="<ul><li>"
-if(c+='<a href="#'+f.id+'">'+f.title+"</a>",m!==f.level&&m)for(v=f.level;v>m;v--)c+="</li></ul><li>"
+if(c+='<a href="#'+f.id+'">'+f.title+"</a>",m!==f.level&&m)for(v=f.level;v>m;v--)c+=v===m+1?"</li></ul><li>":"</li></ul>"
 else c+="</li>",m||(c+="</ul>")
 d=f.level}return c},s=function(t){var e=c(t),n=t.$("."+e)
 !function(t,e){return!e.length||t.dom.getParents(e[0],".mce-offscreen-selection").length>0}(t,n)?f(t):t.insertContent(function(t){var e=d(t)
