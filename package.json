@@ -86,5 +86,9 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
-  "homepage": "https://concordnow.github.io/tinymce-ember"
+  "homepage": "https://concordnow.github.io/tinymce-ember",
+  "volta": {
+    "node": "12.22.7",
+    "npm": "6.14.15"
+  }
 }
