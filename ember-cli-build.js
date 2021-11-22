@@ -47,11 +47,19 @@ module.exports = function (defaults) {
     using: [{ transformation: 'cjs', as: 'tinymce/tinymce' }],
   });
 
-  return app.toTree([
-    tinymceTest,
-    tinymceIcons,
-    tinymcePlugins,
-    tinymceSkins,
-    tinymceThemes,
-  ]);
+  const { maybeEmbroider } = require('@embroider/test-setup');
+  return maybeEmbroider(app, {
+    extraPublicTrees: [
+      tinymceTest,
+      tinymceIcons,
+      tinymcePlugins,
+      tinymceSkins,
+      tinymceThemes,
+    ],
+    skipBabel: [
+      {
+        package: 'qunit',
+      },
+    ],
+  });
 };
