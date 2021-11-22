@@ -3,7 +3,7 @@ import { setupRenderingTest } from 'ember-qunit';
 import { render, waitUntil } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
-import tinymce from 'tinymce/tinymce';
+import tinymce from 'tinymce';
 
 const CONFIG = {
   base_url: 'tinymce',
