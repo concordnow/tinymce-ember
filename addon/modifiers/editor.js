@@ -1,7 +1,7 @@
 import Modifier from 'ember-modifier';
 import { next } from '@ember/runloop';
 
-import tinymce from 'tinymce/tinymce';
+import tinymce from 'tinymce';
 
 const DEFAULT_CONFIG = {
   base_url: 'tinymce',

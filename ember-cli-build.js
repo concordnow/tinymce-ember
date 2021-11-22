@@ -43,10 +43,6 @@ module.exports = function (defaults) {
     destDir: '/tests/tinymce',
   });
 
-  app.import('node_modules/tinymce/tinymce.js', {
-    using: [{ transformation: 'cjs', as: 'tinymce/tinymce' }],
-  });
-
   const { maybeEmbroider } = require('@embroider/test-setup');
   return maybeEmbroider(app, {
     extraPublicTrees: [
