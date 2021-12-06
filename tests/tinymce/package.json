@@ -1,6 +1,6 @@
 {
 	"name": "tinymce",
-	"version": "5.10.1",
+	"version": "5.10.2",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/tinymce/tinymce.git",
@@ -30,7 +30,7 @@
 		"url": "https://github.com/tinymce/tinymce/issues"
 	}
 
-,"_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-5.10.1.tgz"
-,"_integrity": "sha512-aIsFTYiuESpoYkCgkoojpVtPwrSvYBxp4mMEGsj20CnUruLCWosywkbYHDII+j7KlQZZn3p+xK89f5gT3QyuGw=="
-,"_from": "tinymce@5.10.1"
+,"_resolved": "https://registry.npmjs.org/tinymce/-/tinymce-5.10.2.tgz"
+,"_integrity": "sha512-5QhnZ6c8F28fYucLLc00MM37fZoAZ4g7QCYzwIl38i5TwJR5xGqzOv6YMideyLM4tytCzLCRwJoQen2LI66p5A=="
+,"_from": "tinymce@5.10.2"
 }

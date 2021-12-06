@@ -2359,7 +2359,7 @@ break
 case"resize":n.fire("ResizeWindow",e)}}))},xE=function(e){e!==vE&&(e?uu(window).on("resize scroll",CE):uu(window).off("resize scroll",CE),vE=e)},wE=function(e){var t=yE
 delete bE[e.id]
 for(var n=0;n<bE.length;n++)if(bE[n]===e){bE.splice(n,1)
-break}return yE=W(yE,(function(t){return e!==t})),kE.activeEditor===e&&(kE.activeEditor=yE.length>0?yE[0]:null),kE.focusedEditor===e&&(kE.focusedEditor=null),t.length!==yE.length},SE="CSS1Compat"!==document.compatMode,kE=Ae(Ae({},qN),{baseURI:null,baseURL:null,defaultSettings:{},documentBaseURL:null,suffix:null,$:uu,majorVersion:"5",minorVersion:"10.1",releaseDate:"2021-11-03",editors:bE,i18n:Su,activeEditor:null,focusedEditor:null,settings:{},setup:function(){var e,t,n=this,r=""
+break}return yE=W(yE,(function(t){return e!==t})),kE.activeEditor===e&&(kE.activeEditor=yE.length>0?yE[0]:null),kE.focusedEditor===e&&(kE.focusedEditor=null),t.length!==yE.length},SE="CSS1Compat"!==document.compatMode,kE=Ae(Ae({},qN),{baseURI:null,baseURL:null,defaultSettings:{},documentBaseURL:null,suffix:null,$:uu,majorVersion:"5",minorVersion:"10.2",releaseDate:"2021-11-17",editors:bE,i18n:Su,activeEditor:null,focusedEditor:null,settings:{},setup:function(){var e,t,n=this,r=""
 t=Um.getDocumentBaseUrl(document.location),/^[^:]+:\/\/\/?[^\/]+\//.test(t)&&(t=t.replace(/[\?#].*$/,"").replace(/[\/\\][^\/]+$/,""),/[\/\\]$/.test(t)||(t+="/"))
 var o,i=window.tinymce||window.tinyMCEPreInit
 if(i)e=i.base||i.baseURL,r=i.suffix
