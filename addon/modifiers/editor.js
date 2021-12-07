@@ -1,5 +1,5 @@
 import Modifier from 'ember-modifier';
-import { next } from '@ember/runloop';
+import { begin, end, next } from '@ember/runloop';
 
 import tinymce from 'tinymce';
 
@@ -75,6 +75,7 @@ export default class EditorModifier extends Modifier {
       );
     }
 
+    begin();
     const Config = {
       ...(this.args.named.config ?? DEFAULT_CONFIG),
       ...{ target: this.element },
@@ -135,6 +136,7 @@ export default class EditorModifier extends Modifier {
         this.bindEditorCustomEvents(Editor);
       }
     }
+    end();
   }
 
   handleEditorChange() {

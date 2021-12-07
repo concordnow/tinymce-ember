@@ -1,6 +1,6 @@
 import { module, test } from 'qunit';
 import { setupRenderingTest } from 'ember-qunit';
-import { render, waitUntil } from '@ember/test-helpers';
+import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 import tinymce from 'tinymce';
@@ -71,10 +71,10 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    await waitUntil(() => {
-      return tinymce.activeEditor.getContent({ format: 'html' }) === checkValue;
-    });
-
+    assert.equal(
+      tinymce.activeEditor.getContent({ format: 'html' }),
+      checkValue
+    );
     assert.equal(tinymce.activeEditor.getParam('base_url'), CONFIG.base_url);
     assert.equal(tinymce.activeEditor.getParam('theme'), CONFIG.theme);
     assert.equal(tinymce.activeEditor.getParam('toolbar'), CONFIG.toolbar);
@@ -97,9 +97,10 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    await waitUntil(() => {
-      return tinymce.activeEditor.getContent({ format: 'html' }) === checkValue;
-    });
+    assert.equal(
+      tinymce.activeEditor.getContent({ format: 'html' }),
+      checkValue
+    );
 
     this.set('content', updatedValue);
 
@@ -127,17 +128,14 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    await waitUntil(() => {
-      return tinymce.activeEditor.getContent({ format: 'html' }) === value;
-    });
+    assert.equal(tinymce.activeEditor.getContent({ format: 'html' }), value);
 
     tinymce.activeEditor.setContent(updatedValue);
 
-    await waitUntil(() => {
-      return (
-        tinymce.activeEditor.getContent({ format: 'html' }) === updatedValue
-      );
-    });
+    assert.equal(
+      tinymce.activeEditor.getContent({ format: 'html' }),
+      updatedValue
+    );
 
     assert.equal(this.content, updatedValue);
   });
@@ -159,21 +157,13 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    await waitUntil(() => {
-      return tinymce.activeEditor.getContent({ format: 'html' }) === value;
-    });
+    assert.equal(tinymce.activeEditor.getContent({ format: 'html' }), value);
 
     tinymce.activeEditor.execCommand(
       'mceInsertContent',
       false,
       'Some default Text'
     );
-
-    await waitUntil(() => {
-      return (
-        tinymce.activeEditor.getContent({ format: 'html' }) === updatedValue
-      );
-    });
 
     assert.equal(this.content, updatedValue);
   });
@@ -191,9 +181,7 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    await waitUntil(() => {
-      return tinymce.activeEditor.mode.isReadOnly();
-    });
+    assert.true(tinymce.activeEditor.mode.isReadOnly());
     assert.equal(this.content, value);
   });
 });
