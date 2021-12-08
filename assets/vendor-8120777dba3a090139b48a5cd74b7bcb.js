@@ -4016,12 +4016,12 @@ Object.defineProperty(e,"__esModule",{value:!0}),Object.keys(r).forEach((functio
 function i(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const a={base_url:"tinymce",theme:"silver"}
 class s extends t.default{constructor(...e){super(...e),i(this,"customBoundEvents",[]),i(this,"currentContent",""),i(this,"currentFormattedContent",""),i(this,"delayEditorChange",!1),i(this,"editor",null)}get customEvents(){return this.args.named.customEvents??[]}get content(){return this.args.named.content??""}get editorEvents(){return this.args.named.editorEvents??"change keyup setcontent"}didInstall(){let e=n.default||window.tinymce
-if(!e)throw new Error("TinyMCE hasn't been attached to the window hence not imported in your application.")
+if(!e)throw new Error("TinyMCE hasn't been attached to the window hence not imported in your application.");(0,r.begin)()
 const t={...this.args.named.config??a,target:this.element,setup:e=>{this.editor=e,this.args.named.config?.setup?.(e),e.on("init",this.handleEditorInit.bind(this)),e.setMode(this.args.named.disabled?"readonly":"design")}}
 e.init(t)}didReceiveArguments(){const e=this.editor
 e&&(e.setMode(this.args.named.disabled?"readonly":"design"),this.customBoundEvents.length&&this.unbindEditorCustomEvents(e),this.customEvents.length&&this.bindEditorCustomEvents(e),this.content!==this.currentContent&&this.setEditorContent(this.content))}willDestroy(){const e=this.editor
 e&&(e.off(this.editorEvents,this.handleEditorChange.bind(this)),this.customBoundEvents.length&&this.unbindEditorCustomEvents(e),e.remove())}handleEditorInit(){const e=this.editor
-e&&(this.setEditorContent(this.content),e.on(this.editorEvents,this.handleEditorChange.bind(this)),this.customEvents&&this.bindEditorCustomEvents(e))}handleEditorChange(){const e=this.editor
+e&&(this.setEditorContent(this.content),e.on(this.editorEvents,this.handleEditorChange.bind(this)),this.customEvents&&this.bindEditorCustomEvents(e)),(0,r.end)()}handleEditorChange(){const e=this.editor
 e&&(this.delayEditorChange?(0,r.next)((()=>{this.isDestroyed||this.isDestroying||this.onHandleEditorChange(e)})):this.onHandleEditorChange(e))}onHandleEditorChange(e){const t=e.getContent({format:"html"})
 this.currentFormattedContent!==t&&(this.currentFormattedContent=t,this.currentContent=t,this.args.named.onEditorContentChange?.(t??"",e))}setEditorContent(e){const t=this.editor
 if(t){this.delayEditorChange=!0,t.setContent(e),this.delayEditorChange=!1
