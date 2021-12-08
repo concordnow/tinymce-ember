@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2021-12-08
+
 ### Changed
 - Bump Ember.js requirement to v3.20 or above
 - Bump Ember CLI requirement to v3.20 or above
@@ -42,9 +44,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Run on init function after setup config
 
+[3.0.0]: https://github.com/concordnow/tinymce-ember/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/concordnow/tinymce-ember/compare/v1.2.1...v2.0.0
 [1.2.1]: https://github.com/concordnow/tinymce-ember/compare/v1.2.0...v1.2.1
 [1.2.0]: https://github.com/concordnow/tinymce-ember/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/concordnow/tinymce-ember/releases/tag/v1.1.0
 
-[Unreleased]: https://github.com/concordnow/tinymce-ember/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/concordnow/tinymce-ember/compare/v3.0.0...HEAD
