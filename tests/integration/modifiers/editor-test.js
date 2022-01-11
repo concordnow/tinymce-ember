@@ -21,19 +21,19 @@ module('Integration | Modifier | editor', function (hooks) {
   });
 
   test('it renders on a div', async function (assert) {
-    assert.equal(tinymce.activeEditor, null);
+    assert.strictEqual(tinymce.activeEditor, null);
     await render(hbs`<div {{editor}}></div>`);
 
     assert.notEqual(tinymce.activeEditor, null);
-    assert.equal(tinymce.activeEditor.getContent(), '');
+    assert.strictEqual(tinymce.activeEditor.getContent(), '');
   });
 
   test('it renders on a textarea', async function (assert) {
-    assert.equal(tinymce.activeEditor, null);
+    assert.strictEqual(tinymce.activeEditor, null);
     await render(hbs`<textarea {{editor}}></textarea>`);
 
     assert.notEqual(tinymce.activeEditor, null);
-    assert.equal(tinymce.activeEditor.getContent(), '');
+    assert.strictEqual(tinymce.activeEditor.getContent(), '');
   });
 
   test('it keeps node attributes', async function (assert) {
@@ -50,9 +50,15 @@ module('Integration | Modifier | editor', function (hooks) {
   test('it renders with config', async function (assert) {
     await render(hbs`<textarea {{editor config=this.config}}></textarea>`);
 
-    assert.equal(tinymce.activeEditor.getParam('base_url'), CONFIG.base_url);
-    assert.equal(tinymce.activeEditor.getParam('theme'), CONFIG.theme);
-    assert.equal(tinymce.activeEditor.getParam('toolbar'), CONFIG.toolbar);
+    assert.strictEqual(
+      tinymce.activeEditor.getParam('base_url'),
+      CONFIG.base_url
+    );
+    assert.strictEqual(tinymce.activeEditor.getParam('theme'), CONFIG.theme);
+    assert.strictEqual(
+      tinymce.activeEditor.getParam('toolbar'),
+      CONFIG.toolbar
+    );
   });
 
   test('it renders with config & content', async function (assert) {
@@ -71,13 +77,19 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    assert.equal(
+    assert.strictEqual(
       tinymce.activeEditor.getContent({ format: 'html' }),
       checkValue
     );
-    assert.equal(tinymce.activeEditor.getParam('base_url'), CONFIG.base_url);
-    assert.equal(tinymce.activeEditor.getParam('theme'), CONFIG.theme);
-    assert.equal(tinymce.activeEditor.getParam('toolbar'), CONFIG.toolbar);
+    assert.strictEqual(
+      tinymce.activeEditor.getParam('base_url'),
+      CONFIG.base_url
+    );
+    assert.strictEqual(tinymce.activeEditor.getParam('theme'), CONFIG.theme);
+    assert.strictEqual(
+      tinymce.activeEditor.getParam('toolbar'),
+      CONFIG.toolbar
+    );
   });
 
   test('editor content update should be propagated downstream', async function (assert) {
@@ -97,14 +109,14 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    assert.equal(
+    assert.strictEqual(
       tinymce.activeEditor.getContent({ format: 'html' }),
       checkValue
     );
 
     this.set('content', updatedValue);
 
-    assert.equal(
+    assert.strictEqual(
       tinymce.activeEditor.getContent({ format: 'html' }),
       updatedValue
     );
@@ -128,16 +140,19 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    assert.equal(tinymce.activeEditor.getContent({ format: 'html' }), value);
+    assert.strictEqual(
+      tinymce.activeEditor.getContent({ format: 'html' }),
+      value
+    );
 
     tinymce.activeEditor.setContent(updatedValue);
 
-    assert.equal(
+    assert.strictEqual(
       tinymce.activeEditor.getContent({ format: 'html' }),
       updatedValue
     );
 
-    assert.equal(this.content, updatedValue);
+    assert.strictEqual(this.content, updatedValue);
   });
 
   test('editor content update should be propagated upstream on keypress', async function (assert) {
@@ -157,7 +172,10 @@ module('Integration | Modifier | editor', function (hooks) {
         }}
       ></textarea>`);
 
-    assert.equal(tinymce.activeEditor.getContent({ format: 'html' }), value);
+    assert.strictEqual(
+      tinymce.activeEditor.getContent({ format: 'html' }),
+      value
+    );
 
     tinymce.activeEditor.execCommand(
       'mceInsertContent',
@@ -165,7 +183,7 @@ module('Integration | Modifier | editor', function (hooks) {
       'Some default Text'
     );
 
-    assert.equal(this.content, updatedValue);
+    assert.strictEqual(this.content, updatedValue);
   });
 
   test('it renders disabled and prevent update', async function (assert) {
@@ -182,6 +200,6 @@ module('Integration | Modifier | editor', function (hooks) {
       ></textarea>`);
 
     assert.true(tinymce.activeEditor.mode.isReadOnly());
-    assert.equal(this.content, value);
+    assert.strictEqual(this.content, value);
   });
 });
