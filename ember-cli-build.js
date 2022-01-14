@@ -43,6 +43,11 @@ module.exports = function (defaults) {
     destDir: '/tests/tinymce',
   });
 
+  // NOTE: This is used to expose tinymce is the dummy app
+  app.import('node_modules/tinymce/tinymce.js', {
+    using: [{ transformation: 'cjs', as: 'tinymce' }],
+  });
+
   const { maybeEmbroider } = require('@embroider/test-setup');
   return maybeEmbroider(app, {
     extraPublicTrees: [
