@@ -1152,7 +1152,7 @@ u.setStartAfter(o),u.setEndBefore(a),Cl(p,u,(function(e){F(e,(function(e){$c(e)|
 n.startContainer=o.parentNode||o,n.startOffset=p.nodeIndex(o),n.endContainer=a.parentNode||a,n.endOffset=p.nodeIndex(a)+1}Cl(p,n,(function(e){F(e,v)}))}var l,d=e.formatter.get(t),m=d[0],g=!0,p=e.dom,h=e.selection,v=function(t){var n=!0,r=!1
 Un(t)&&p.getContentEditable(t)&&(n=g,g="true"===p.getContentEditable(t),r=!0)
 var o,i,s=xe(t.childNodes)
-if(g&&!r&&(o=a(t),i=t.parentNode,!o&&u(i)&&cl(m)&&a(i)),m.deep&&s.length){for(var c=0;c<s.length;c++)v(s[c])
+if(g&&!r&&(o=a(t)||I(d,(function(e){return bg(p,t,e)})),i=t.parentNode,!o&&u(i)&&cl(m)&&a(i)),m.deep&&s.length){for(var c=0;c<s.length;c++)v(s[c])
 r&&(g=n)}F(["underline","line-through","overline"],(function(n){Un(t)&&e.dom.getStyle(t,"text-decoration")===n&&t.parentNode&&rl(p,t.parentNode)===n&&xp(e,{deep:!1,exact:!0,inline:"span",styles:{textDecoration:n}},null,t)}))}
 if(r)return Xc(r)?((l=p.createRng()).setStartBefore(r),l.setEndAfter(r),c(l)):c(r),void mf(e,t,r,n)
 if("false"!==p.getContentEditable(h.getNode()))h.isCollapsed()&&sl(m)&&!Sl(e).length?function(e,t,n,r){var o,i,a,u,s,c,l,f,d,m,g,p,h,v,b,y=e.dom,C=e.selection,x=[],w=C.getRng(),S=w.startContainer,E=w.startOffset,k=S
@@ -2056,7 +2056,7 @@ break
 case"resize":n.fire("ResizeWindow",e)}}))}function Hw(e){e!==Yw&&(e?qa(window).on("resize scroll",zw):qa(window).off("resize scroll",zw),Yw=e)}function jw(e){var t=Jw
 delete Gw[e.id]
 for(var n=0;n<Gw.length;n++)if(Gw[n]===e){Gw.splice(n,1)
-break}return Jw=H(Jw,(function(t){return e!==t})),Zw.activeEditor===e&&(Zw.activeEditor=0<Jw.length?Jw[0]:null),Zw.focusedEditor===e&&(Zw.focusedEditor=null),t.length!==Jw.length}var Vw,qw=Ya.DOM,$w=Et.explode,Ww=Et.each,Kw=Et.extend,Xw=0,Yw=!1,Gw=[],Jw=[],Qw="CSS1Compat"!==document.compatMode,Zw=_e(_e({},Sw),{baseURI:null,baseURL:null,defaultSettings:{},documentBaseURL:null,suffix:null,$:qa,majorVersion:"5",minorVersion:"10.2",releaseDate:"2021-11-17",editors:Gw,i18n:iu,activeEditor:null,focusedEditor:null,settings:{},setup:function(){var e,t="",n=zd.getDocumentBaseUrl(document.location);/^[^:]+:\/\/\/?[^\/]+\//.test(n)&&(n=n.replace(/[\?#].*$/,"").replace(/[\/\\][^\/]+$/,""),/[\/\\]$/.test(n)||(n+="/"))
+break}return Jw=H(Jw,(function(t){return e!==t})),Zw.activeEditor===e&&(Zw.activeEditor=0<Jw.length?Jw[0]:null),Zw.focusedEditor===e&&(Zw.focusedEditor=null),t.length!==Jw.length}var Vw,qw=Ya.DOM,$w=Et.explode,Ww=Et.each,Kw=Et.extend,Xw=0,Yw=!1,Gw=[],Jw=[],Qw="CSS1Compat"!==document.compatMode,Zw=_e(_e({},Sw),{baseURI:null,baseURL:null,defaultSettings:{},documentBaseURL:null,suffix:null,$:qa,majorVersion:"5",minorVersion:"10.3",releaseDate:"2022-02-09",editors:Gw,i18n:iu,activeEditor:null,focusedEditor:null,settings:{},setup:function(){var e,t="",n=zd.getDocumentBaseUrl(document.location);/^[^:]+:\/\/\/?[^\/]+\//.test(n)&&(n=n.replace(/[\?#].*$/,"").replace(/[\/\\][^\/]+$/,""),/[\/\\]$/.test(n)||(n+="/"))
 var r=window.tinymce||window.tinyMCEPreInit
 if(r)e=r.base||r.baseURL,t=r.suffix
 else{for(var o,i=document.getElementsByTagName("script"),a=0;a<i.length;a++)if(""!==(o=i[a].src||"")){var u=o.substring(o.lastIndexOf("/"))

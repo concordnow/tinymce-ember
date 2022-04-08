@@ -1344,8 +1344,8 @@ if(n){for(var d=n.parentNode,m=r.parentNode;m&&m!==d;m=m.parentNode){c=l.clone(m
 for(var g=0;g<t.length&&null!==(c=nv(e,t[g],u,c));g++);c&&(s&&c.appendChild(s),f||(f=c),s=c)}!i||a.mixed&&l.isBlock(n)||(r=l.split(n,r)),s&&(o.parentNode.insertBefore(s,o),f.appendChild(o),gl(a)&&Uh(l,a,0,s))}return r}(e,i,u,r,r,!0,a,n)},l=function(t){return H(i,(function(r){return tv(e,r,n,t,t)}))},d=function(t){var n=!0,r=!1
 Rn(t)&&c.getContentEditable(t)&&(n=u,u="true"===c.getContentEditable(t),r=!0)
 var o=ae(t.childNodes)
-if(u&&!r){var i=l(t),s=t.parentNode
-!i&&v(s)&&pl(a)&&l(s)}if(a.deep&&o.length){for(var f=0;f<o.length;f++)d(o[f])
+if(u&&!r){var s=l(t)||H(i,(function(e){return gh(c,t,e)})),f=t.parentNode
+!s&&v(f)&&pl(a)&&l(f)}if(a.deep&&o.length){for(var m=0;m<o.length;m++)d(o[m])
 r&&(u=n)}V(["underline","line-through","overline"],(function(n){Rn(t)&&e.dom.getStyle(t,"text-decoration")===n&&t.parentNode&&sl(c,t.parentNode)===n&&tv(e,{deep:!1,exact:!0,inline:"span",styles:{textDecoration:n}},null,t)}))},m=function(e){var t=c.get(e?"_start":"_end"),n=t[e?"firstChild":"lastChild"]
 return function(e){return Yf(e)&&Rn(e)&&("_start"===e.id||"_end"===e.id)}(n)&&(n=n[e?"firstChild":"lastChild"]),Mn(n)&&0===n.data.length&&(n=e?t.previousSibling||t.nextSibling:t.nextSibling||t.previousSibling),c.remove(t,!0),n},g=function(t){var n,r,o=Dl(e,t,i,t.collapsed)
 if(a.split){if(o=yd(o),(n=Xh(e,o,!0))!==(r=Xh(e,o))){if(n=Yh(n,!0),r=Yh(r,!1),Kh(c,n,r)){var u=L.from(n.firstChild).getOr(n)
@@ -2359,7 +2359,7 @@ break
 case"resize":n.fire("ResizeWindow",e)}}))},xE=function(e){e!==vE&&(e?uu(window).on("resize scroll",CE):uu(window).off("resize scroll",CE),vE=e)},wE=function(e){var t=yE
 delete bE[e.id]
 for(var n=0;n<bE.length;n++)if(bE[n]===e){bE.splice(n,1)
-break}return yE=W(yE,(function(t){return e!==t})),kE.activeEditor===e&&(kE.activeEditor=yE.length>0?yE[0]:null),kE.focusedEditor===e&&(kE.focusedEditor=null),t.length!==yE.length},SE="CSS1Compat"!==document.compatMode,kE=Ae(Ae({},qN),{baseURI:null,baseURL:null,defaultSettings:{},documentBaseURL:null,suffix:null,$:uu,majorVersion:"5",minorVersion:"10.2",releaseDate:"2021-11-17",editors:bE,i18n:Su,activeEditor:null,focusedEditor:null,settings:{},setup:function(){var e,t,n=this,r=""
+break}return yE=W(yE,(function(t){return e!==t})),kE.activeEditor===e&&(kE.activeEditor=yE.length>0?yE[0]:null),kE.focusedEditor===e&&(kE.focusedEditor=null),t.length!==yE.length},SE="CSS1Compat"!==document.compatMode,kE=Ae(Ae({},qN),{baseURI:null,baseURL:null,defaultSettings:{},documentBaseURL:null,suffix:null,$:uu,majorVersion:"5",minorVersion:"10.3",releaseDate:"2022-02-09",editors:bE,i18n:Su,activeEditor:null,focusedEditor:null,settings:{},setup:function(){var e,t,n=this,r=""
 t=Um.getDocumentBaseUrl(document.location),/^[^:]+:\/\/\/?[^\/]+\//.test(t)&&(t=t.replace(/[\?#].*$/,"").replace(/[\/\\][^\/]+$/,""),/[\/\\]$/.test(t)||(t+="/"))
 var o,i=window.tinymce||window.tinyMCEPreInit
 if(i)e=i.base||i.baseURL,r=i.suffix
