@@ -114,6 +114,7 @@ export default class EditorModifier extends Modifier {
   willDestroy() {
     const Editor = this.editor;
     if (Editor) {
+      Editor.off('init', this.handleEditorInit.bind(this));
       Editor.off(this.editorEvents, this.handleEditorChange.bind(this));
 
       if (this.customBoundEvents.length) {
