@@ -17,6 +17,10 @@ updates:
       - dependency-name: eslint
         versions:
           - ">= 8"
+      - dependency-name: ember-modifier
+        # cf 25e0f60b4b35b6308fd9e9308d11e9ecd49797f2 description
+        versions:
+          - "> 3.2.2"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
