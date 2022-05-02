@@ -2,13 +2,19 @@
   "git": {
     "tagName": "v${version}"
   },
-  "npm": {
-    "publish": false
-  },
+  "npm": false,
   "plugins": {
     "@release-it/keep-a-changelog": {
       "addUnreleased": true,
       "addVersionUrl": true
+    },
+    "release-it-yarn-workspaces": {
+      "publish": false,
+      "workspaces": ["addon"],
+      "additionalManifests": {
+        "dependencyUpdates": ["test-app/package.json"],
+        "versionUpdates": ["test-app/package.json"]
+      }
     }
   }
 }

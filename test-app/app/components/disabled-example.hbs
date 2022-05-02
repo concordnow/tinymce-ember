@@ -1,0 +1,8 @@
+<button type="button" {{on "click" this.toggleDisabled}}>
+  Toggle disabled
+</button>
+
+<textarea
+  aria-label="Disabled editor example"
+  {{editor disabled=this.disabled content="Read-only content"}}
+></textarea>

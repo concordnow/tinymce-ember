@@ -22,15 +22,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
-      - run: npm run lint
-      - run: npm run test:ember
+          cache: yarn
+      - run: yarn install --frozen-lockfile
+      - run: yarn lint
+        working-directory: addon
+      - run: yarn test:ember
+        working-directory: test-app
 
   floating-dependencies:
     name: 'Floating Dependencies'
@@ -41,8 +38,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - run: npm install
-      - run: npm run test:ember
+          cache: yarn
+      - run: yarn install --no-lockfile
+      - run: yarn test:ember
+        working-directory: test-app
 
   try-scenarios:
     name: "Try: ${{ matrix.ember-try-scenario }}"
@@ -58,47 +57,22 @@ jobs:
           - ember-lts-3.20
           - ember-lts-3.24
           - ember-release
-          # - ember-beta
-          # - ember-canary
+          - ember-beta
+          - ember-canary
           - ember-classic
           - ember-default-with-jquery
-          # - embroider-safe
-          # - embroider-optimized
+          - embroider-safe
+          - embroider-optimized
 
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-      - run: npm ci
+          cache: yarn
+      - run: yarn install --frozen-lockfile
       - run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
-
-  deploy:
-    name: 'Deploy'
-    runs-on: ubuntu-latest
-    needs: [try-scenarios]
-    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
-
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - run: npm ci
-      - run: npm run build
-        env:
-          ROOT_URL: ${{ github.event.repository.name }}
-      - name: 'Deploy documentation'
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+        working-directory: test-app
 
   release:
     name: 'Release'
@@ -113,9 +87,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
           registry-url: 'https://registry.npmjs.org'
       - name: 'Publish npm package'
-        run: npm publish
+        run: yarn publish
+        working-directory: addon
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
       - name: 'Create github release'

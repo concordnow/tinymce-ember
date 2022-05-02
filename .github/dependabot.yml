@@ -1,19 +1,13 @@
 version: 2
 updates:
   - package-ecosystem: npm
-    directory: "/"
+    directory: "/addon"
     schedule:
       interval: weekly
     open-pull-requests-limit: 10
     reviewers:
       - "concordnow/frontend"
     ignore:
-      - dependency-name: ember-cli
-        versions:
-          - ">= 0"
-      - dependency-name: ember-source
-        versions:
-          - ">= 0"
       - dependency-name: eslint
         versions:
           - ">= 8"

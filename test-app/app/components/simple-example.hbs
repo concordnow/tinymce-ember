@@ -1,0 +1,6 @@
+<textarea
+  name="my-editor"
+  aria-label="Simple editor example"
+  {{editor content=this.content onEditorContentChange=(fn (mut this.content))}}
+></textarea>
+{{this.content}}
