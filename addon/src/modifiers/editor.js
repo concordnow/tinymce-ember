@@ -1,5 +1,10 @@
 import Modifier from 'ember-modifier';
 import { begin, end, next } from '@ember/runloop';
+import {
+  isDestroying,
+  isDestroyed,
+  registerDestructor,
+} from '@ember/destroyable';
 
 import { tinymce } from '../index';
 
@@ -18,6 +23,8 @@ export default class EditorModifier extends Modifier {
   // Instance of the active editor once initialized
   editor = null;
 
+  didSetup = false;
+
   /**
     List of events given to the editor
 
@@ -33,9 +40,7 @@ export default class EditorModifier extends Modifier {
     @type null|[]
     @default null
    */
-  get customEvents() {
-    return this.args.named.customEvents ?? [];
-  }
+  #customEvents;
 
   /**
     A given string to be set as editor's content
@@ -44,9 +49,17 @@ export default class EditorModifier extends Modifier {
     @type string
     @default ''
    */
-  get content() {
-    return this.args.named.content ?? '';
-  }
+  #content;
+
+  /**
+    A function triggered on every content change.
+    This function call might be delayed to avoid multiple content change in the same runloop issue.
+
+    @argument onEditorContentChange
+    @type function
+    @default undefined
+   */
+  #onEditorContentChange;
 
   /**
     A given string representing default bound editor's events
@@ -57,52 +70,75 @@ export default class EditorModifier extends Modifier {
     @type string
     @default 'change keyup setcontent'
    */
-  get editorEvents() {
-    return this.args.named.editorEvents ?? 'change keyup setcontent';
+  #editorEvents;
+
+  constructor() {
+    super(...arguments);
+    registerDestructor(this, this.cleanup);
   }
 
-  didInstall() {
-    begin();
-    const Config = {
-      ...(this.args.named.config ?? {}),
-      ...{ target: this.element },
-      setup: (editor) => {
-        this.editor = editor;
+  modify(
+    element,
+    _,
+    {
+      config = {},
+      content = '',
+      customEvents = [],
+      disabled = false,
+      editorEvents = 'change keyup setcontent',
+      onEditorContentChange,
+    }
+  ) {
+    this.#content = content;
+    this.#customEvents = customEvents;
+    this.#editorEvents = editorEvents;
+    this.#onEditorContentChange = onEditorContentChange;
 
-        this.args.named.config?.setup?.(editor);
+    if (!this.didSetup) {
+      // didInstall
 
-        editor.on('init', this.handleEditorInit.bind(this));
-        this.setMode(this.args.named.disabled ? 'readonly' : 'design');
-      },
-    };
+      begin();
+      const Config = {
+        ...config,
+        ...{ target: element },
+        setup: (editor) => {
+          this.editor = editor;
 
-    tinymce.init(Config);
-  }
+          config.setup?.(editor);
 
-  didReceiveArguments() {
+          editor.on('init', this.handleEditorInit.bind(this));
+          this.setMode(disabled ? 'readonly' : 'design');
+        },
+      };
+
+      tinymce.init(Config);
+      this.didSetup = true;
+    }
+
+    // didReceiveArguments
     const Editor = this.editor;
     if (Editor) {
-      this.setMode(this.args.named.disabled ? 'readonly' : 'design');
+      this.setMode(disabled ? 'readonly' : 'design');
 
       if (this.customBoundEvents.length) {
         this.unbindEditorCustomEvents(Editor);
       }
 
-      if (this.customEvents.length) {
+      if (this.#customEvents.length) {
         this.bindEditorCustomEvents(Editor);
       }
 
-      if (this.content !== this.currentContent) {
-        this.setEditorContent(this.content);
+      if (this.#content !== this.currentContent) {
+        this.setEditorContent(this.#content);
       }
     }
   }
 
-  willDestroy() {
+  cleanup = () => {
     const Editor = this.editor;
     if (Editor) {
       Editor.off('init', this.handleEditorInit.bind(this));
-      Editor.off(this.editorEvents, this.handleEditorChange.bind(this));
+      Editor.off(this.#editorEvents, this.handleEditorChange.bind(this));
 
       if (this.customBoundEvents.length) {
         this.unbindEditorCustomEvents(Editor);
@@ -110,7 +146,7 @@ export default class EditorModifier extends Modifier {
 
       Editor.remove();
     }
-  }
+  };
 
   setMode(mode) {
     const Editor = this.editor;
@@ -127,11 +163,11 @@ export default class EditorModifier extends Modifier {
     const Editor = this.editor;
 
     if (Editor) {
-      this.setEditorContent(this.content);
+      this.setEditorContent(this.#content);
 
-      Editor.on(this.editorEvents, this.handleEditorChange.bind(this));
+      Editor.on(this.#editorEvents, this.handleEditorChange.bind(this));
 
-      if (this.customEvents) {
+      if (this.#customEvents) {
         this.bindEditorCustomEvents(Editor);
       }
     }
@@ -147,7 +183,7 @@ export default class EditorModifier extends Modifier {
          * Need setEditorContent method to run commpletely before triggering the onEditorContentChange function
          */
         next(() => {
-          if (this.isDestroyed || this.isDestroying) {
+          if (isDestroyed(this) || isDestroying(this)) {
             return;
           }
 
@@ -166,7 +202,7 @@ export default class EditorModifier extends Modifier {
       this.currentFormattedContent = newContent;
       this.currentContent = newContent;
 
-      this.args.named.onEditorContentChange?.(newContent ?? '', Editor);
+      this.#onEditorContentChange?.(newContent ?? '', Editor);
     }
   }
 
@@ -186,7 +222,7 @@ export default class EditorModifier extends Modifier {
   }
 
   bindEditorCustomEvents(Editor) {
-    this.customEvents.forEach((event) => {
+    this.#customEvents.forEach((event) => {
       this.customBoundEvents.push(event);
       Editor.on(event.name, event.handler);
     });
