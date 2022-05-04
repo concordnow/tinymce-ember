@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - V2 addon
 
+### Fixed
+- Fix Tinymce v6 compatibility
+
 ## [3.0.2] - 2022-04-08
 
 ### Fixed

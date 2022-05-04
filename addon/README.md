@@ -13,6 +13,7 @@ Compatibility
 * Ember CLI v3.20 or above
 * Node.js v12 or above
 * ember-auto-import >= 2
+* Tinymce v5 or above
 
 
 Installation
@@ -22,7 +23,11 @@ Installation
 ember install tinymce-ember
 ```
 
-**Note:** The addon is designed in such way that it is the responsability of the application to provide the TinyMCE module.
+**Note:**
+
+The addon is designed in such way that it is the responsability of the application to provide the TinyMCE module.
+
+Install TinyMCE via [package](https://www.npmjs.com/package/tinymce) or via [script](https://www.tiny.cloud/docs/quick-start/).
 
 Motivation
 ------------------------------------------------------------------------------
