@@ -72,7 +72,7 @@ export default class EditorModifier extends Modifier {
         this.args.named.config?.setup?.(editor);
 
         editor.on('init', this.handleEditorInit.bind(this));
-        editor.setMode(this.args.named.disabled ? 'readonly' : 'design');
+        this.setMode(this.args.named.disabled ? 'readonly' : 'design');
       },
     };
 
@@ -82,7 +82,7 @@ export default class EditorModifier extends Modifier {
   didReceiveArguments() {
     const Editor = this.editor;
     if (Editor) {
-      Editor.setMode(this.args.named.disabled ? 'readonly' : 'design');
+      this.setMode(this.args.named.disabled ? 'readonly' : 'design');
 
       if (this.customBoundEvents.length) {
         this.unbindEditorCustomEvents(Editor);
@@ -109,6 +109,17 @@ export default class EditorModifier extends Modifier {
       }
 
       Editor.remove();
+    }
+  }
+
+  setMode(mode) {
+    const Editor = this.editor;
+    if (Editor.setMode) {
+      // Tinymce v5
+      Editor.setMode(mode);
+    } else {
+      // Tinymce v6
+      Editor.mode.set(mode);
     }
   }
 
