@@ -39,7 +39,7 @@
     "@embroider/test-setup": "^1.0.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@release-it/keep-a-changelog": "^2.3.0",
+    "@release-it/keep-a-changelog": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "broccoli-funnel": "^3.0.3",
@@ -74,7 +74,7 @@
     "prettier": "^2.4.0",
     "qunit": "^2.16.0",
     "qunit-dom": "^2.0.0",
-    "release-it": "^14.11.5",
+    "release-it": "^15.0.0",
     "tinymce": "^5.5.0",
     "webpack": "^5.52.1"
   },
