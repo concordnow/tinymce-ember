@@ -75,7 +75,7 @@
     "qunit": "^2.16.0",
     "qunit-dom": "^2.0.0",
     "release-it": "^14.11.5",
-    "tinymce": "^5.5.0",
+    "tinymce": "^6.1.0",
     "webpack": "^5.52.1"
   },
   "engines": {
