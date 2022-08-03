@@ -1088,10 +1088,10 @@
     semver "^7.3.5"
     typescript-memoize "^1.0.1"
 
-"@embroider/test-setup@^1.0.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@embroider/test-setup/-/test-setup-1.6.0.tgz#91fe3d7a8daeba32de35220d25407ad1df7a0db2"
-  integrity sha512-6U+NsfGL9ubADreLCnOWMCVFpoU4/DzHlbgfEH3NE+rcdF+2WbY8VP+MeqjjccoES0HvhIeUKvoIbiqkoWAbhQ==
+"@embroider/test-setup@^1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@embroider/test-setup/-/test-setup-1.8.3.tgz#445b9fe5a363ce50367ac2114750597f98d7806d"
+  integrity sha512-BCCbBG7UWkCw+cQ401Ip6LnqTRaQDeKImxR+e7Q4oP6H4EBj7p4iGR1z6fhMy4NNyXKPB6jk3bGa9bTiiNoEAw==
   dependencies:
     lodash "^4.17.21"
     resolve "^1.20.0"
@@ -5505,10 +5505,24 @@ eslint-config-prettier@^8.3.0, eslint-config-prettier@^8.5.0:
   resolved "https://registry.yarnpkg.com/eslint-config-prettier/-/eslint-config-prettier-8.5.0.tgz#5a81680ec934beca02c7b1a61cf8ca34b66feab1"
   integrity sha512-obmWKLUNCnhtQRKc+tmnYuQl0pFU1ibYJQ5BGhTVB08bHe9wC8qUeG7c08dj9XX+AuPj1YSGSQIHl1pnDHZR0Q==
 
-eslint-plugin-ember@^10.5.4, eslint-plugin-ember@^10.6.0:
+eslint-plugin-ember@^10.5.4:
   version "10.6.0"
   resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.6.0.tgz#cf02e651300d67ddafef01616f33c07cebb09dd7"
   integrity sha512-HrI/6jIHcqOfFHP0PRDdvvIZkJhBUxf7V+GUFizMG7EHyqXd/VR7BJSdgXbo1DwvDvCefO5Kz0YMZvh5fnNLOQ==
+  dependencies:
+    "@ember-data/rfc395-data" "^0.0.4"
+    css-tree "^2.0.4"
+    ember-rfc176-data "^0.3.15"
+    eslint-utils "^3.0.0"
+    estraverse "^5.2.0"
+    lodash.kebabcase "^4.1.1"
+    requireindex "^1.2.0"
+    snake-case "^3.0.3"
+
+eslint-plugin-ember@^11.0.5:
+  version "11.0.5"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-11.0.5.tgz#b4a1ce7df123e6b2d18c148b9340e62d32bc6b98"
+  integrity sha512-Hc6aQ6lsdjf9xPrgO0rRY5EjTSIssUEJ4IJZU+idtexead0DX1C5hZDgG9XTKYQIYwRR3JFFC5R4h6KOPCcQRQ==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     css-tree "^2.0.4"
@@ -7416,7 +7430,7 @@ is-ci@3.0.1, is-ci@^3.0.1:
   dependencies:
     ci-info "^3.2.0"
 
-is-core-module@^2.8.1, is-core-module@^2.9.0:
+is-core-module@^2.9.0:
   version "2.9.0"
   resolved "https://registry.yarnpkg.com/is-core-module/-/is-core-module-2.9.0.tgz#e1c34429cd51c6dd9e09e0799e396e27b19a9c69"
   integrity sha512-+5FPy5PnwmO3lvfMb0AsoPaBG+5KHUI0wYFXOtYPnVVVspTFUuMZNfNaNVRt3FZadstu2c8x23vykRW/NBoU6A==
@@ -10359,21 +10373,12 @@ resolve-url@^0.2.1:
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
   integrity sha1-LGN/53yJOv0qZj/iGqkIAGjiBSo=
 
-resolve@^1.1.6:
+resolve@^1.1.6, resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.20.0, resolve@^1.22.0, resolve@^1.4.0, resolve@^1.5.0:
   version "1.22.1"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.1.tgz#27cb2ebb53f91abb49470a928bba7558066ac177"
   integrity sha512-nBpuuYuY5jFsli/JIs1oldw6fOQCBioohqWZg/2hiaOybXOft4lonv85uDOKXdf8rhyK159cxU5cDcK/NKk8zw==
   dependencies:
     is-core-module "^2.9.0"
-    path-parse "^1.0.7"
-    supports-preserve-symlinks-flag "^1.0.0"
-
-resolve@^1.10.0, resolve@^1.10.1, resolve@^1.11.1, resolve@^1.12.0, resolve@^1.13.1, resolve@^1.14.2, resolve@^1.17.0, resolve@^1.20.0, resolve@^1.22.0, resolve@^1.4.0, resolve@^1.5.0:
-  version "1.22.0"
-  resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.0.tgz#5e0b8c67c15df57a89bdbabe603a002f21731198"
-  integrity sha512-Hhtrw0nLeSrFQ7phPp4OOcVjLPIeMnRlr5mcnVuMe7M/7eBn98A3hmFRLoFo3DLZkivSYwhRUJTyPyWAk56WLw==
-  dependencies:
-    is-core-module "^2.8.1"
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
