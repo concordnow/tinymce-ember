@@ -89,6 +89,7 @@ jobs:
           node-version: ${{ env.NODE_VERSION }}
           cache: yarn
           registry-url: 'https://registry.npmjs.org'
+      - run: yarn install --frozen-lockfile
       - name: 'Publish npm package'
         run: yarn publish
         working-directory: addon
