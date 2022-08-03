@@ -8,7 +8,7 @@
       "addUnreleased": true,
       "addVersionUrl": true
     },
-    "release-it-yarn-workspaces": {
+    "@release-it-plugins/workspaces": {
       "publish": false,
       "workspaces": ["addon"],
       "additionalManifests": {

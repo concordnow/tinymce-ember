@@ -1,7 +1,9 @@
 {
   "private": true,
-  "workspaces": ["addon", "test-app"],
-
+  "workspaces": [
+    "addon",
+    "test-app"
+  ],
   "scripts": {
     "prepare": "cd addon && yarn build",
     "release": "release-it",
@@ -12,8 +14,8 @@
     "yarn": "1.22.17"
   },
   "devDependencies": {
+    "@release-it-plugins/workspaces": "^3.2.0",
     "@release-it/keep-a-changelog": "^3.0.0",
-    "release-it": "^15.0.0",
-    "release-it-yarn-workspaces": "^2.0.1"
+    "release-it": "^15.2.0"
   }
 }
