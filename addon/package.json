@@ -53,7 +53,7 @@
     "node": "12.* || 14.* || >= 16"
   },
   "peerDependencies": {
-    "tinymce": "^5"
+    "tinymce": "^5 || ^6"
   },
   "peerDependenciesMeta": {
     "tinymce": {
