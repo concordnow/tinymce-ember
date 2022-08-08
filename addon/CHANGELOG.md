@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [4.0.0-1] - 2022-08-08
 ### Added
 - Add Tinymce v6 support
 
@@ -67,6 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Run on init function after setup config
 
+[4.0.0-1]: https://github.com/concordnow/tinymce-ember/compare/v4.0.0-0...v4.0.0-1
 [4.0.0-0]: https://github.com/concordnow/tinymce-ember/compare/v3.0.2...v4.0.0-0
 [3.0.2]: https://github.com/concordnow/tinymce-ember/compare/v3.0.1...v3.0.2
 [3.0.1]: https://github.com/concordnow/tinymce-ember/compare/v3.0.0...v3.0.1
@@ -76,4 +79,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.2.0]: https://github.com/concordnow/tinymce-ember/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/concordnow/tinymce-ember/releases/tag/v1.1.0
 
-[unreleased]: https://github.com/concordnow/tinymce-ember/compare/v4.0.0-0...HEAD
+[unreleased]: https://github.com/concordnow/tinymce-ember/compare/v4.0.0-1...HEAD
