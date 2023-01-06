@@ -26,6 +26,7 @@
         "./.prettierrc.js",
         "./.template-lintrc.js",
         "./addon-main.js",
+        "./rollup.config.js",
         "./testem.js",
         "./blueprints/*/index.js",
         "./config/**/*.js"

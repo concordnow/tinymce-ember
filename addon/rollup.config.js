@@ -1,12 +1,15 @@
-import babel from '@rollup/plugin-babel';
-import { Addon } from '@embroider/addon-dev/rollup';
+'use strict';
+
+const babel = require('@rollup/plugin-babel');
+// eslint-disable-next-line node/no-missing-require
+const { Addon } = require('@embroider/addon-dev/rollup');
 
 const addon = new Addon({
   srcDir: 'src',
   destDir: 'dist',
 });
 
-export default {
+module.exports = {
   // This provides defaults that work well alongside `publicEntrypoints` below.
   // You can augment this if you need to.
   output: addon.output(),
