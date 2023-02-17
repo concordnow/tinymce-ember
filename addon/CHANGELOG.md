@@ -6,6 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.0-0] - 2023-02-17
+### Added
+* Upgrade ember-auto-import & webpack as dev dependencies
+* Upgrade @ember/test-helpers from 2.4.2 to 2.9.3
+* Upgrade fetch-metadata from 1.3.1 to 1.3.6
+* Convert rollup config to commonjs
+* Use json for linter and formatter config files
+* Upgrade Rollup from 2.79.1 to 3.9.1 in /addon
+* Add `concurrency` setup to GH Actions workflow
+* Upgrade @embroider/addon-dev from 1.8.3 to 2.0.0 in /addon
+* Upgrade @rollup/plugin-babel from 5.3.1 to 6.0.0 in /addon
+
 ## [4.0.0-1] - 2022-08-08
 ### Added
 - Add Tinymce v6 support
