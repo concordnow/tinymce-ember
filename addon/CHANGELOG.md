@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ## [4.1.0-0] - 2023-02-17
+
+## [4.1.0-0] - 2023-02-17
 ### Added
 * Upgrade ember-auto-import & webpack as dev dependencies
 * Upgrade @ember/test-helpers from 2.4.2 to 2.9.3
@@ -81,6 +83,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Run on init function after setup config
 
+[4.1.0-0]: https://github.com/concordnow/tinymce-ember/compare/v4.0.0-1...v4.1.0-0
 [4.0.0-1]: https://github.com/concordnow/tinymce-ember/compare/v4.0.0-0...v4.0.0-1
 [4.0.0-0]: https://github.com/concordnow/tinymce-ember/compare/v3.0.2...v4.0.0-0
 [3.0.2]: https://github.com/concordnow/tinymce-ember/compare/v3.0.1...v3.0.2
@@ -91,4 +94,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [1.2.0]: https://github.com/concordnow/tinymce-ember/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/concordnow/tinymce-ember/releases/tag/v1.1.0
 
-[unreleased]: https://github.com/concordnow/tinymce-ember/compare/v4.0.0-1...HEAD
+[unreleased]: https://github.com/concordnow/tinymce-ember/compare/v4.1.0-0...HEAD
