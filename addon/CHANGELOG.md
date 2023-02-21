@@ -6,7 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [4.1.0-0] - 2023-02-17
+## [4.2.0-0] - 2023-02-21
+### Added
+* Upgrade @embroider/addon-dev from 2.0.0 to 3.0.0 in /addon
 
 ## [4.1.0-0] - 2023-02-17
 ### Added
