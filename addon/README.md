@@ -25,7 +25,7 @@ ember install tinymce-ember
 
 **Note:**
 
-The addon is designed in such way that it is the responsability of the application to provide the TinyMCE module.
+The addon is designed in such way that it is the responsibility of the application to provide the TinyMCE module.
 
 Install TinyMCE via [package](https://www.npmjs.com/package/tinymce) or via [script](https://www.tiny.cloud/docs/quick-start/).
 
@@ -80,6 +80,24 @@ Type of event should be
 Defaults to `''`.
 
 A given string to be set as editor's content
+
+
+**config**: *Object*
+
+Defaults to [Default toolbar controls](https://www.tiny.cloud/docs/general-configuration-guide/basic-setup/#defaulttoolbarcontrols) provided by TinyMCE.
+
+Example config with basic toolbars:
+
+```js
+{
+    menubar: false,
+    statusbar: false,
+    plugins: ['link lists paste'],
+    toolbar: [
+      'numlist bullist alignleft aligncenter link bold italic underline',
+    ],
+}
+```
 
 
 **onEditorContentChange**: *String*
