@@ -10,7 +10,7 @@ on:
     - cron: '0 3 * * *' # daily, at 3am
 
 env:
-  NODE_VERSION: '16'
+  NODE_VERSION: '20'
 
 concurrency:
   group: ci-${{ github.head_ref || github.ref }}
