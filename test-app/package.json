@@ -66,6 +66,7 @@
     "prettier": "^2.4.0",
     "qunit": "^2.16.0",
     "qunit-dom": "^2.0.0",
+    "tinymce": "^8.0.0",
     "tinymce-ember": "4.2.0-0",
     "webpack": "^5.75.0"
   },
