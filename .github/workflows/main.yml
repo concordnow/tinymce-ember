@@ -10,7 +10,7 @@ on:
     - cron: '0 3 * * *' # daily, at 3am
 
 env:
-  NODE_VERSION: '16'
+  NODE_VERSION: '20'
 
 concurrency:
   group: ci-${{ github.head_ref || github.ref }}
@@ -57,12 +57,11 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
+        # TODO: re-add ember-release, ember-beta, ember-canary once ember-cli is upgraded past 3.28
+        # — modern ember-source moved internals (e.g. @ember/string) that 3.28 vendor wiring expects, crashing at boot.
         ember-try-scenario:
           - ember-lts-3.20
           - ember-lts-3.24
-          - ember-release
-          - ember-beta
-          - ember-canary
           - ember-classic
           - ember-default-with-jquery
           - embroider-safe

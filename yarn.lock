@@ -12173,6 +12173,11 @@ tiny-lr@^2.0.0:
     object-assign "^4.1.0"
     qs "^6.4.0"
 
+tinymce@^8.0.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/tinymce/-/tinymce-8.5.0.tgz#ab96f5fc2a9fd37da6ce049feb1d5e7ecb408ed0"
+  integrity sha512-DnKEfPNQnOJc8Ca1roZBs/GSbkAZyIIbC4p8eHZyZQi85OSAXtiVNYMaRxo4mzsGKpa0sA4/Us4KXQkX8q7w2A==
+
 tmp@0.0.28:
   version "0.0.28"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.28.tgz#172735b7f614ea7af39664fa84cf0de4e515d120"

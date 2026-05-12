@@ -10,7 +10,7 @@
     "test": "cd test-app && yarn test:ember"
   },
   "volta": {
-    "node": "16.14.2",
+    "node": "20.19.0",
     "yarn": "1.22.17"
   },
   "devDependencies": {

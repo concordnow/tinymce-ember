@@ -4,6 +4,7 @@ import { render } from '@ember/test-helpers';
 import { hbs } from 'ember-cli-htmlbars';
 
 const CONFIG = {
+  license_key: 'gpl',
   toolbar:
     'undo redo | fontselect | fontsizeselect | forecolor backcolor | align lineheight | bullist numlist',
 };
@@ -151,6 +152,7 @@ module('Integration | Modifier | editor', function (hooks) {
     await render(hbs`
       <textarea
         {{editor
+          config=this.config
           content=this.content
           onEditorContentChange=(action this.contentUpdateAction)
         }}
